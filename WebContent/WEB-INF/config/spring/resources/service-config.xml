@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<util:map id="configMap" map-class="java.util.HashMap">
+		<entry key="fcm_google_api_key_for_android" value="AIzaSyBVv3DSv556cYFAXZyKu1K1vrPJ3aj3BlI" />
+		<entry key="fcm_google_api_key_for_ios" value="AIzaSyBVv3DSv556cYFAXZyKu1K1vrPJ3aj3BlI" />
+		<entry key="fcm_proxy_ip" value="10.0.0.0" />  
+		<entry key="fcm_proxy_port" value="8080" /> 
+	</util:map>
+
+
+    <bean id="notificationSubscriberservice"
+        class="com.mobicule.component.notification.service.NotificationSubscriberService">
+    </bean>
+    
+    <bean id="motificationTopicSubscriberService"
+        class="com.mobicule.component.notification.service.NotificationTopicSubscriberService">
+    </bean>
+
+    <bean id="fcmNotificationService"
+        class="com.mobicule.component.notification.service.FCMNotificationService">
+     </bean>
+    
+     <bean id="fcmNotificationSender"
+        class="com.mobicule.component.notification.service.FCMNotificationSender">
+    </bean>
+	
+</beans>
+

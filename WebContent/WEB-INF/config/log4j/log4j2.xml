@@ -1,0 +1,23 @@
+<configuration status="WARN">
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%5p %d [%t] (%F:%L)  - %m%ex%n" />
+		</Console>
+			<RollingFile name="MyFile" fileName="/app/digital/mcollect-logs/int/mCollect-csb.log" 
+				filePattern="/app/digital/mcollect-logs/int/mCollect-csb-%d{MM-dd-yyyy}-%i.log.gz">			
+			<PatternLayout pattern="%5p %d [%t] (%F:%L)  - %m%ex%n" />
+			<Policies>			
+			 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			 <SizeBasedTriggeringPolicy size="200MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5000" />
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<Logger name="com.mobicule.mcollections" level="INFO" />		
+		<root level="INFO">
+			<appender-ref ref="MyFile" level="INFO" />
+			 <appender-ref ref="Console" level="INFO" /> 
+		</root>
+	</loggers>
+</configuration>

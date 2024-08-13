@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="package">
+
+	<echo>${ant.file}</echo>
+
+	<property file="build.properties" />
+	<property file="custom.properties" />
+
+	<property name="weblib.dir" value="${web.dir}/WEB-INF/lib" />
+	<property name="artifact" value="${dist.dir}/${artifact.name}.war" />
+
+	<path id="classpath">
+		<fileset dir="${weblib.dir}" includes="**/*.jar" />
+		<fileset dir="${server.home}/lib" includes="**/*.jar" />
+	</path>
+
+	<!-- ================================= 
+		       		target: clean              
+		 ================================= -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- ================================= 
+	          		target: init              
+	     ================================= -->
+	<target name="init" depends="clean" description="description">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- ================================= 
+		          target: copy-resources              
+		 ================================= -->
+	<target name="copy-resources" depends="init" description="Copy Resources to Build Directory">
+
+		<!-- Copy dependent jar to project lib -->
+
+		<copy todir="${web.dir}/WEB-INF/lib/">
+			<fileset dir="../${mCollectionsMGLCore.core}/${dist.dir}" includes="**/*.jar" />
+		</copy>
+
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java, **/*.svn" />
+		</copy>
+	</target>
+
+	<!-- ================================= 
+			          target:compile              
+		 ================================= -->
+	<target name="compile" depends="copy-resources">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" encoding="ISO-8859-1" classpathref="classpath" includeantruntime="false" />
+	</target>
+
+
+	<!--­­ ========= Define Sonar target ========= ­­-->
+
+	<target name="sonar" depends="compile">
+		<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+
+			<!--­­ put the "sonar­ant­task­*.jar" file in your "$HOME/.ant/lib" folder ­­-->
+			<classpath path="/home/pranav/Softwares/extracted/apache-ant-1.9.0/lib/sonar-ant-task-2.0.jar" />
+		</taskdef>
+
+		<!--­­ Execute Sonar ­­-->
+
+		<sonar:sonar xmlns:sonar="antlib:org.sonar.ant" />
+
+	</target>
+
+	<!-- ================================= 
+			          target: package              
+		 ================================= -->
+	<target name="package" depends="sonar">
+		<war destfile="${artifact}" webxml="${web.dir}/WEB-INF/web.xml" basedir="${web.dir}">
+			<classes dir="${build.dir}" />
+		</war>
+	</target>
+</project>

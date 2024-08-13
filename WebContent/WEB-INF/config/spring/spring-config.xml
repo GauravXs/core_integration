@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<!-- Import Resource -->
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.mobicule.mcollections" />
+
+	<import resource="messaging/spring-config.xml" />
+	<import resource="commons/app-config.xml" />
+	<import resource="commons/database-config.xml" />
+	<import resource="commons/transaction-config.xml" />
+
+	<!-- User Bean Defs -->
+	<import resource="systemuser/dao-config.xml" />
+	<import resource="systemuser/service-config.xml" />
+
+	<!-- User Bean Defs -->
+	<import resource="agency/dao-config.xml" />
+	<import resource="agency/service-config.xml" />
+
+	<import resource="usercomponent/dao-config.xml" />
+	<import resource="usercomponent/service-config.xml" />
+
+	<import resource="version/dao-config.xml" />
+	<import resource="version/service-config.xml" />
+
+	<import resource="portfolio/dao-config.xml" />
+	<import resource="portfolio/service-config.xml" />
+
+	<!-- Collections Bean Defs -->
+	<import resource="activitylogger/dao-config.xml" />
+	<import resource="activitylogger/service-config.xml" />
+
+	<!-- Sync bean defs -->
+	<import resource="sync/dao-config.xml" />
+	<import resource="sync/service-config.xml" />
+
+	<!-- Collections bean defs -->
+	<import resource="collections/dao-config.xml" />
+	<import resource="collections/service-config.xml" />
+
+	<!-- email config -->
+	<import resource="email/email-config.xml" />
+
+
+	<!-- feeedback config -->
+	<import resource="feedback/dao-config.xml" />
+	<import resource="feedback/service-config.xml" />
+
+	<!-- Report Config -->
+	<import resource="report/service-config.xml" />
+	<import resource="report/dao-config.xml" />
+
+	<!-- Images Config -->
+	<import resource="images/service-config.xml" />
+	<import resource="images/dao-config.xml" />
+
+
+	<!-- Specialfeeedback config -->
+	<import resource="specialFeedback/dao-config.xml" />
+	<import resource="specialFeedback/service-config.xml" />
+	
+		<!-- Offline SMS  -->
+	
+  	<import resource="offlinesms/service-config.xml" /> 
+  	<import resource="offlinesms/dao-config.xml" /> 
+  	
+	<!--   	for pdd -->
+ 	<import resource="pdd/service-config.xml" /> 
+  	<import resource="pdd/dao-config.xml" /> 
+  	
+  	
+  	<!-- KGI Funcationality -->
+  	<import resource="kgi/service-config.xml" /> 
+  	<import resource="kgi/dao-config.xml" /> 
+
+ 	<!-- GPS Location Funcationality -->
+  	<import resource="gpslocation/service-config.xml" /> 
+  	<import resource="gpslocation/dao-config.xml" /> 
+
+	<import resource="generateotp/service-config.xml" /> 
+  	<import resource="generateotp/dao-config.xml" /> 
+  	
+  	<import resource="fcmnotification/service-config.xml" /> 
+  	<import resource="fcmnotification/dao-config.xml" />
+  	<import resource="fcmnotification/notification-config.xml" /> 
+  	
+  	<import resource="resources/spring-config.xml" /> 
+  	
+  	<!-- Code of conduct -->
+  	<import resource="codeOfConduct/service-config.xml" /> 
+  	<import resource="codeOfConduct/dao-config.xml" /> 
+  	
+  	 	<!-- Exotel Call -->
+  	<import resource="exotelCall/service-config.xml" /> 
+  	<import resource="exotelCall/dao-config.xml" />
+  	
+  	<import resource="caseHistory/service-config.xml" /> 
+  	<import resource="caseHistory/dao-config.xml" />
+  	
+  	<import resource="streetwalk/dao-config.xml" />
+	<import resource="streetwalk/service-config.xml" />
+	
+	<!-- RealizationDateSync -->
+	<import resource="realizationDate/dao-config.xml" />
+	<import resource="realizationDate/service-config.xml" />
+	
+	<!-- UserScratch sync -->
+	<import resource="userScratchSync/dao-config.xml" />
+	<import resource="userScratchSync/service-config.xml" />
+
+</beans>

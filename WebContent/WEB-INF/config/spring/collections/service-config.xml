@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- Spring Service Beans -->
+
+	<bean id="randomCollectionService"
+		class="com.mobicule.mcollections.core.service.RandomCollectionsServiceImplementation">
+		<property name="randomCollectionsDao" ref="randomCollectionsDao" />
+		<!-- <property name="imageService" ref="imageService"/> -->
+		<!-- <property name="chequeService" ref="chequeService"/> -->
+	</bean>
+
+	<bean id="collectionService"
+		class="com.mobicule.mcollections.core.service.CollectionServiceImplementation">
+		<property name="collectionDao" ref="collectionDao" />
+		<!-- <property name="imageService" ref="imageService"/> -->
+		<!-- <property name="chequeService" ref="chequeService"/> -->
+	</bean>
+
+	<bean id="randomCollectionsExternalService"
+		class="com.mobicule.mcollections.core.service.RandomCollectionsExternalServiceImplementation">
+		<property name="randomCollectionsExternalDao" ref="randomCollectionsExternalDao" />
+	</bean>
+
+	<bean id="chequeService"
+		class="com.mobicule.mcollections.core.service.ChequeServiceImplementation">
+		<property name="chequeDao" ref="chequeDao" />
+	</bean>
+
+	<bean id="imageService"
+		class="com.mobicule.mcollections.core.service.ImageServiceImplementation">
+		<property name="imageDao" ref="imageDao" />
+	</bean>
+
+	<bean id="caseService"
+		class="com.mobicule.mcollections.core.service.CaseServiceImplementation">
+		<property name="caseDao" ref="caseDao" />
+		<!-- <property name="imageService" ref="imageService"/> -->
+		<!-- <property name="chequeService" ref="chequeService"/> -->
+	</bean>
+
+
+	<bean id="emailService" class="com.mobicule.mcollections.core.commons.EmailUtilities">
+		<property name="emailUtilities" ref="mailSender"></property>
+	</bean>
+
+
+	<bean id="transactionService"
+		class="com.mobicule.mcollections.core.service.TransactionServiceImplementation">
+		<property name="transactionDao" ref="transactionDao"></property>
+	</bean>
+
+	<bean id="leadService"
+		class="com.mobicule.mcollections.core.service.LeadServiceImplementation">
+		<property name="leadDao" ref="leadDao" />
+
+	</bean>
+	
+	<bean id="settlementService"
+		class="com.mobicule.mcollections.core.service.SettlementServiceImplementation">
+		<property name="settlementDao" ref="settlementDao" />
+		<!-- <property name="imageService" ref="imageService"/> -->
+		<!-- <property name="chequeService" ref="chequeService"/> -->
+	</bean>
+
+	<bean id="collectionPaymentStatusService"
+		class="com.mobicule.mcollections.core.service.CollectionPaymentStatusServiceImplementation">
+		<property name="collectionPaymentStatusDao" ref="collectionPaymentStatusDao" />
+		<!-- <property name="imageService" ref="imageService"/> -->
+		<!-- <property name="chequeService" ref="chequeService"/> -->
+	</bean>
+	
+	<bean id = "smsTemplateXMLUtilities" class="com.mobicule.mcollections.core.commons.SMSTemplateXMLUtilities">
+		<property name="applicationConfiguration" ref="applicationConfiguration"></property>
+		<property name="communicationActivityService" ref="communicationActivityService"></property>
+	    <property name="systemUserService" ref="systemUserService"></property>
+	    <property name="collectionService" ref="collectionService"></property>
+	</bean>
+</beans>

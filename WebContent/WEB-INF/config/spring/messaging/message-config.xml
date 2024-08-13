@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:ws="http://www.springframework.org/schema/integration/ws"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.0.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.0.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-2.0.xsd
+		http://www.springframework.org/schema/integration/stream
+      	http://www.springframework.org/schema/integration/stream/spring-integration-stream-2.0.xsd
+      	http://www.springframework.org/schema/integration/ws
+      	http://www.springframework.org/schema/integration/ws/spring-integration-ws-2.0.xsd
+      	http://www.springframework.org/schema/util
+      	http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<int:channel id="deviceRequestChannel" />
+	<int:channel id="deviceResponseChannel" />
+	<int:channel id="requestRouterChannel" />
+	<int:channel id="errorChannel" />
+	<int:channel id="redirectChannel" />
+	<int:channel id="systemUserChannel" />
+	<int:channel id="syncChannel" />
+	<int:channel id="authenticationChannel" />
+	<int:channel id="authenticationResponseChannel" />
+	<int:channel id="collectionsChannel" />
+	<int:channel id="leadGenerationChannel" />
+	<int:channel id="reportChannel" />
+	<int:channel id="randomCollectionsChannel" />
+	<int:channel id="depositChannel" />
+	<int:channel id="fileRandomCollectionsChannel" />
+	<int:channel id="streetwalkSequenceSyncChannel" />
+	<!-- password reset -->
+	<int:channel id="passwordChannel" />
+	<int:channel id="otpRequestChannel" />
+	<int:channel id="forgetPasswordOtpGenerateChannel" />
+	<int:channel id="forgetPasswordOtpValidateChannel" />	
+	<int:channel id="changePasswordChannel" />
+	<int:channel id="feedbackChannel" />
+	<int:channel id="dailyStatusReportChannel" />
+	<int:channel id="randomCollectionsRedirectChannel" />
+	<int:channel id="specialFeedbackChannel"></int:channel>
+	<int:channel id="settlementSearchApproval"></int:channel>
+	<int:channel id="settlementSubmitApproval"></int:channel>
+	<int:channel id="cardSettlementSubmitChannel" />
+	<int:channel id="SettlementSubmitChannel" />
+	<int:channel id="rootedDeviceChannel" />
+	<int:channel id="GCMDeviceChannel" />
+	<int:channel id="depositionChannel" />
+	<int:channel id="BluetoothPrintingChannel" />
+	<int:channel id="blockedUserChannel" />
+	<int:channel id="actualChangePasswordChannel" />
+	<!-- added for pdd -->
+	<int:channel id="pddSyncChannel" />
+	<int:channel id="pddRedirectChannel" />
+	<int:channel id="pddSearchChannel" />
+	<int:channel id="pddImageSubmissionChannel" />
+	<int:channel id="modelSyncChannel" />
+
+
+	<!-- added by bhushan for MDR sync -->
+	<int:channel id="mdrSyncChannel" />
+	<int:channel id="mposSubmitChannel" />
+
+	<!-- Added for collection -->
+	<int:channel id="AllPayChannel" />
+
+	<!-- Added for Upi -->
+	<int:channel id="UPIChannel" />
+
+	<!-- Added for gps location -->
+	<int:channel id="GpsLocationChannel" />
+
+	<!-- added by Tushar for RBl -->
+	<int:channel id="faqSyncChannel" />
+	<int:channel id="casesSyncChannel" />
+	<int:channel id="generateOTPChannel" />
+	<int:channel id="checkOTPChannel" />
+	<int:channel id="onlinePaymentChannel" />
+	<int:channel id="notificationChannel" />
+	<int:channel id="resendSmsChannel" />
+	<!-- COC 11 Nov 2020 -->
+	<int:channel id="codeOfConductChannel" />
+
+	<int:channel id="submitCodeOfConductChannel" />
+
+<!-- Exotel call initate 24 Jan 2021-->
+	<int:channel id="exotelCallInitateChannel" />
+
+<!-- SearchCase channel id 29 Apr 2021-->
+	<int:channel id="searchCaseChannel" />
+	
+	<int:channel id="historyChannel" />
+	
+	<!-- Added for OTP -->
+	<int:channel id="otpGenerationChannel" />
+	<int:channel id="otpVerificationChannel" />
+	
+	<!-- Added for Deposition Bank Mapping Sync -->
+	<int:channel id="depositionBankSyncChannel" />
+
+	<int:service-activator
+		input-channel="deviceRequestChannel"
+		output-channel="requestRouterChannel" ref="requestReceiver"
+		method="receive" />
+	<int:header-value-router
+		input-channel="requestRouterChannel" header-name="checkRequest"
+		default-output-channel="deviceResponseChannel">
+		<int:mapping value="valid"
+			channel="validrequestRouterChannel" />
+		<int:mapping value="invalid"
+			channel="invalidrequestRouterChannel" />
+		<int:mapping value="versionupgrade"
+			channel="versionupgraderequestRouterChannel" />
+		<int:mapping value="unauthorizedrequest"
+			channel="unauthorizedrequestRouterChannel" />
+		<int:mapping value="autoResetPassword"
+			channel="autoResetPasswordChannel" />
+		<int:mapping value="accountLocked"
+			channel="accountLockedChannel" />
+		<int:mapping value="blockedUser"
+			channel="blockedUserChannel" />
+		<int:mapping value="futureExpiry"
+			channel="futureExpiryChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="validrequestRouterChannel" header-name="type">
+		<int:mapping value="login" channel="deviceResponseChannel" />
+		<int:mapping value="sync" channel="syncChannel" />
+		<int:mapping value="randomCollections"
+			channel="randomCollectionsRedirectChannel" />
+		<int:mapping value="collections"
+			channel="collectionsChannel" />
+		<int:mapping value="fileRandomCollections"
+			channel="collectionsChannel" />
+		<int:mapping value="fileCollections"
+			channel="collectionsChannel" />
+		<int:mapping value="changeRequest"
+			channel="passwordChannel" />
+		<int:mapping value="customerHistory"
+			channel="feedbackChannel" />
+		<int:mapping value="report" channel="reportChannel" />
+		<int:mapping value="lead" channel="leadGenerationChannel" />
+		<int:mapping value="updateRootedDevice"
+			channel="rootedDeviceChannel" />
+		<int:mapping value="gcmToken" channel="GCMDeviceChannel" />
+		<int:mapping value="deposition"
+			channel="depositionChannel" />
+		<int:mapping value="bluetoothPrinting"
+			channel="BluetoothPrintingChannel" />
+
+		<!-- added for pdd search and submit -->
+		<int:mapping value="pddCollections"
+			channel="pddRedirectChannel" />
+		<int:mapping value="RNC" channel="RenewalCasesChannel" />
+		<int:mapping value="ROC" channel="RollOverCasesChannel" />
+
+
+		<!-- added for Mpos subission -->
+		<int:mapping value="mPOSCollections"
+			channel="mposSubmitChannel" />
+
+		<!-- Added for Collectiontype -->
+		<int:mapping value="AllPay" channel="AllPayChannel" />
+
+		<!-- Added for Upitype -->
+		<int:mapping value="UPI" channel="UPIChannel" />
+
+		<!-- Added for GpsLocationtype -->
+		<int:mapping value="expense" channel="GpsLocationChannel" />
+
+		<!-- Added for generateOTP in RBL -->
+		<int:mapping value="generateOTP"
+			channel="generateOTPChannel" />
+
+	<!-- Code of Conduct 11 Nov 2020 -->
+			<int:mapping value="checkCOC"
+			channel="codeOfConductChannel" />
+
+			<int:mapping value="submitCOC"
+			channel="submitCodeOfConductChannel" />
+
+<!-- Exotel call initate on 24 Jan 2021-->
+			<int:mapping value="exotelCallInitate"
+			channel="exotelCallInitateChannel" />
+			
+			<!-- Search Case Type on 29 Apr 2021-->
+			<int:mapping value="searchCaseOnline"
+			channel="searchCaseChannel" />
+
+		<int:mapping value="checkOTP" channel="checkOTPChannel" />
+
+		<int:mapping value="onlinePaymnetRequest"
+			channel="onlinePaymentChannel" />
+
+		<int:mapping value="notification"
+			channel="notificationChannel" />
+
+			<int:mapping value="sendSMS"
+			channel="resendSmsChannel" />
+			
+			<int:mapping value="history"
+			channel="historyChannel" />
+			
+		<!-- Added for OTP type -->
+		<int:mapping value="otp" channel="otpGenerationChannel" />
+		<int:mapping value="otp_login" channel="otpGenerationChannel" />
+		<int:mapping value="verifyOtp" channel="otpVerificationChannel" />
+		<int:mapping value="verifyOtp_login" channel="otpVerificationChannel" />
+	</int:header-value-router>
+
+	<!-- Added for OTP type -->
+	<int:header-value-router input-channel="otpGenerationChannel"
+		header-name="action">
+		<int:mapping value="generateOtp" channel="otpChannel" />
+	</int:header-value-router>
+	
+	<int:header-value-router input-channel="otpVerificationChannel"
+		header-name="action">
+		<int:mapping value="otpVerification" channel="verifiyOtpChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="notificationChannel" header-name="action">
+		<int:mapping value="notification"
+			channel="notificationChannel" />
+		<!-- <int:mapping value="getPaymentStatus" channel="getPaymentStatusChanel"
+			/> -->
+	</int:header-value-router>
+
+<int:header-value-router
+		input-channel="resendSmsChannel" header-name="action">
+	<int:mapping value="getStatus"
+			channel="resendSmsSubmissionChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="AllPayChannel" header-name="action">
+	<!-- 	<int:mapping value="sendSMS"
+			channel="AllPayCollectionChannel" /> -->
+		<int:mapping value="getPaymentStatus"
+			channel="getPaymentStatusChanel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="onlinePaymentChannel" header-name="action">
+		<int:mapping value="getStatus"
+			channel="onlinePaymentChannel" />
+		<!-- <int:mapping value="getPaymentStatus" channel="getPaymentStatusChanel"
+			/> -->
+	</int:header-value-router>
+
+	<!-- Added for GpsLocationaction -->
+	<int:header-value-router
+		input-channel="GpsLocationChannel" header-name="action">
+		<int:mapping value="submit"
+			channel="GpsLocationSubmissionChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="generateOTPChannel" header-name="action">
+		<int:mapping value="submit"
+			channel="generateOTPSubmissionChannel" />
+	</int:header-value-router>
+
+	<!-- code of conduct 11 Nov 2020 -->
+	<int:header-value-router
+		input-channel="codeOfConductChannel" header-name="action">
+		<int:mapping value="checkCOC"
+			channel="codeOfConductChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="submitCodeOfConductChannel" header-name="action">
+		<int:mapping value="submitCOC"
+			channel="submitCodeOfConductChannel" />
+	</int:header-value-router>
+
+<!-- Exotel call initate 24 Jan 2021-->
+	<int:header-value-router
+		input-channel="exotelCallInitateChannel" header-name="action">
+		<int:mapping value="exotelCallInitate"
+			channel="exotelCallInitateChannel" />
+	</int:header-value-router>
+	 		
+<!-- Search case action 29 Apr 2021-->
+	<int:header-value-router
+		input-channel="searchCaseChannel" header-name="action">
+		<int:mapping value="searchCases"
+			channel="searchCaseChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="checkOTPChannel" header-name="action">
+		<int:mapping value="submit"
+			channel="checkOTPDetailsChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="RenewalCasesChannel" header-name="action">
+		<int:mapping value="search"
+			channel="renewalCasesSearchChannel" />
+		<int:mapping value="submit"
+			channel="kgiCasesSubmitChannel" />
+		<int:mapping value="imageSubmission"
+			channel="kgiImageSubmissionChannel" />
+
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="RollOverCasesChannel" header-name="action">
+		<int:mapping value="search"
+			channel="rolloverCasesSearchChannel" />
+		<int:mapping value="submit"
+			channel="kgiCasesSubmitChannel" />
+		<int:mapping value="imageSubmission"
+			channel="kgiImageSubmissionChannel" />
+
+	</int:header-value-router>
+
+	<int:header-value-router
+		input-channel="randomCollectionsRedirectChannel" header-name="action">
+		<int:mapping value="search"
+			channel="randomCollectionsChannel" />
+		<int:mapping value="submit" channel="collectionsChannel" />
+		<int:mapping value="searchSettlement"
+			channel="settlementSearchChannel" />
+		<int:mapping value="submitSettlement"
+			channel="settlementSubmitChannel" />
+		<int:mapping value="searchApproval"
+			channel="settlementSearchApproval" />
+		<int:mapping value="submitApproval"
+			channel="settlementSubmitApproval" />
+		<int:mapping value="submitCardSettlement"
+			channel="cardSettlementSubmitChannel" />
+		<int:mapping value="imageSubmission"
+			channel="settlementImageSubmissionChannel" />
+
+		<!-- added fro Mpos -->
+		<int:mapping value="mPOSSubmit"
+			channel="mposSubmitChannel" />
+	</int:header-value-router>
+	
+	<!-- Added for OTP type -->
+	<int:header-value-router input-channel="otpGenerationChannel"
+		header-name="action">
+		<int:mapping value="generateOtp" channel="otpChannel" />
+	</int:header-value-router>
+	
+	<int:header-value-router input-channel="otpVerificationChannel"
+		header-name="action">
+		<int:mapping value="otpVerification" channel="verifiyOtpChannel" />
+	</int:header-value-router>
+
+	<!-- added for pdd search and submit -->
+	<int:header-value-router
+		input-channel="pddRedirectChannel" header-name="action">
+		<int:mapping value="search" channel="pddSearchChannel" />
+		<int:mapping value="submit" channel="pddSearchChannel" />
+		<int:mapping value="imageSubmission"
+			channel="pddImageSubmissionChannel" />
+	</int:header-value-router>
+
+	<!-- Added for Collection -->
+	<int:header-value-router input-channel="AllPayChannel" header-name="action">
+		<int:mapping value="sendSMS" channel="AllPayCollectionChannel" /> </int:header-value-router>
+
+	<!-- Added for UPI action -->
+	<int:header-value-router
+		input-channel="UPIChannel" header-name="action">
+		<int:mapping value="verify"
+			channel="UPIVerificationChannel" />
+		<int:mapping value="notify"
+			channel="UPINotificationChannel" />
+	</int:header-value-router>
+
+	<int:service-activator
+		input-channel="feedbackChannel" output-channel="deviceResponseChannel"
+		ref="feedbackService" method="execute" />
+
+	<int:service-activator
+		input-channel="systemUserChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createLoginSuccess" />
+
+	<int:service-activator
+		input-channel="invalidrequestRouterChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createLoginFailure" />
+
+	<int:service-activator
+		input-channel="unauthorizedrequestRouterChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createUnauthorizedrequest" />
+
+	<int:service-activator
+		input-channel="versionupgraderequestRouterChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createVersionUpgradeRequest" />
+
+	<!-- auto password reset -->
+	<int:service-activator
+		input-channel="autoResetPasswordChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createAutoPasswordResetRequest" />
+
+	<int:service-activator
+		input-channel="futureExpiryChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createFutureExpiryResponse" />
+
+	<int:service-activator
+		input-channel="accountLockedChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createAccountLockedRequest" />
+
+	<int:service-activator
+		input-channel="blockedUserChannel"
+		output-channel="deviceResponseChannel" ref="userService"
+		method="createBlockedUserResponse" />
+
+	<int:service-activator
+		ref="randomCollectionsService"
+		input-channel="randomCollectionsChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+
+	<int:service-activator
+		ref="settlementSearchService" input-channel="settlementSearchChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+	<int:service-activator
+		ref="settlementSubmitService" input-channel="settlementSubmitChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="settlementSubmitService"
+		input-channel="cardSettlementSubmitChannel"
+		output-channel="deviceResponseChannel" method="submitCardSettlement" />
+
+	<int:service-activator
+		ref="settlementImageSubmissionService"
+		input-channel="settlementImageSubmissionChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="settlementApprovalService"
+		input-channel="settlementSearchApproval"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="settlementApprovalService"
+		input-channel="settlementSubmitApproval"
+		output-channel="deviceResponseChannel" method="submitApprovalStatus" />
+
+
+	<!-- added for Mpos -->
+	<int:service-activator ref="mposSubmitService"
+		input-channel="mposSubmitChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+
+	<int:service-activator ref="collectionsService"
+		input-channel="collectionsChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="leadGenerationService" input-channel="leadGenerationChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator ref="rootedDeviceService"
+		input-channel="rootedDeviceChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator ref="GCMDeviceService"
+		input-channel="GCMDeviceChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator ref="depositionService"
+		input-channel="depositionChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="bluetoothPrintingService"
+		input-channel="BluetoothPrintingChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+
+	<int:service-activator
+		ref="fileRandomCollectionsService"
+		input-channel="fileRandomCollectionsChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator ref="errorService"
+		input-channel="errorChannel" output-channel="deviceResponseChannel"
+		method="execute" />
+
+
+	<int:header-value-router
+		input-channel="redirectChannel" header-name="action">
+		<int:mapping value="submit" channel="collectionsChannel" />
+		<int:mapping value="search"
+			channel="randomCollectionsChannel" />
+	</int:header-value-router>
+
+	<int:header-value-router header-name="entity"
+		input-channel="syncChannel">
+		<int:mapping value="portfolio"
+			channel="portfolioSyncChannel" />
+		<int:mapping value="config" channel="configSyncChannel" />
+		<int:mapping value="streetwalk"
+			channel="streetwalkSequenceSyncChannel" />
+		<int:mapping value="BANK_CUSTOMERS"
+			channel="bankSyncChannel" />
+		<int:mapping value="DEPOSITION_CCAPAC"
+			channel="bankSyncChannel" />
+		<int:mapping value="ReasonMaster"
+			channel="bankSyncChannel" />
+		<int:mapping value="stuckCollection"
+			channel="stuckCollectionChannel" />
+		<int:mapping value="specialFeedback"
+			channel="specialFeedbackChannel" />
+
+		<int:mapping value="pddCases" channel="pddSyncChannel" />
+		<int:mapping value="modelSync" channel="modelSyncChannel" />
+		<int:mapping value="stateSync" channel="modelSyncChannel" />
+		<int:mapping value="insurerSync"
+			channel="modelSyncChannel" />
+
+		<!-- added by bhushan for MDR SYNC -->
+		<int:mapping value="mdrSync" channel="mdrSyncChannel" />
+
+		<!-- added by tushar for RBL -->
+		<int:mapping value="FAQ_MASTER" channel="faqSyncChannel" />
+		<int:mapping value="CASES" channel="casesSyncChannel" />
+
+		<!-- Added by Adnan for Lead Territory SYNC -->
+		<int:mapping value="LEAD_TERRITORY_MASTER"
+			channel="leadTerritoryMasterSyncChannel" />
+		<int:mapping value="LEAD_PRODUCT_MASTER"
+			channel="leadProductMasterSyncChannel" />
+
+			<int:mapping value="collectionActivity"
+			channel="collectionActivityReportChannel" />
+		<int:mapping value="feedbackSnapshot"
+			channel="feedbackSnapReportChannel" />
+		<int:mapping value="visitIntensity"
+			channel="visitIntensityReportChannel" />
+
+			<!-- Code of conduct 11 Nov 2020 -->
+			<int:mapping value="codeOfConduct"
+			channel="codeOfConductChannel" />
+
+			<int:mapping value="codeOfConduct"
+			channel="submitCodeOfConductChannel" />
+
+<!-- Exotel call initate 24 Jan 2021-->
+			<int:mapping value="exotelCall"
+			channel="exotelCallInitateChannel" />
+
+<!-- Search case entity 29 Apr 2021-->
+			<int:mapping value="fetchCasesOnline"
+			channel="searchCaseChannel" />
+			
+		<!-- Added for Deposition Bank Mapping -->
+		<int:mapping value="DEPOSITION_BANK_MAPPING" channel="depositionBankSyncChannel" />
+		
+		<int:mapping value="realizationDateSync" channel="realizationDateSyncChannel" />
+
+	</int:header-value-router>
+
+	<!-- Added for Collection -->
+	<!-- <int:header-value-router header-name="entity" input-channel="AllPayChannel">
+		<int:mapping value="collection" channel="AllPayCollectionChannel" /> </int:header-value-router> -->
+
+
+	<int:service-activator
+		input-channel="specialFeedbackChannel"
+		output-channel="deviceResponseChannel"
+		ref="specialFeedbackSyncService" method="execute" />
+
+	<!-- <int:header-value-router header-name="entity" input-channel="leadGenerationChannel">
+		<int:mapping value="portfolio" channel="portfolioSyncChannel" /> </int:header-value-router>
+		<int:header-value-router header-name="entity" input-channel="leadGenerationChannel">
+		<int:mapping value="portfolio" channel="portfolioSyncChannel" /> </int:header-value-router> -->
+
+	<int:service-activator
+		input-channel="portfolioSyncChannel"
+		output-channel="deviceResponseChannel" ref="portfolioSyncService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="configSyncChannel"
+		output-channel="deviceResponseChannel" ref="configurationSyncService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="streetwalkSequenceSyncChannel"
+		output-channel="deviceResponseChannel"
+		ref="streetwalkSequenceSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="bankSyncChannel" output-channel="deviceResponseChannel"
+		ref="bankSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="stuckCollectionChannel"
+		output-channel="deviceResponseChannel"
+		ref="stuckCollectionExtractService" method="execute" />
+
+	<!-- password reset -->
+	<int:header-value-router header-name="action"
+		input-channel="passwordChannel">
+		
+		<int:mapping value="forgetPasswordOtpGenerate"
+			channel="forgetPasswordOtpGenerateChannel" />
+			
+		<int:mapping value="forgetPasswordOtpValidate"
+			channel="forgetPasswordOtpValidateChannel" />
+		
+		<int:mapping value="OTPRequest"
+			channel="otpRequestChannel" />
+		
+		<int:mapping value="changePassword"
+			channel="changePasswordChannel" />
+		
+		<int:mapping value="actualChangePassword"
+			channel="actualChangePasswordChannel" />
+	</int:header-value-router>
+
+
+	<int:service-activator
+		input-channel="forgetPasswordOtpGenerateChannel" ref="passwordService"
+		method="generateForgotPasswordOtp" output-channel="deviceResponseChannel" />
+		
+	<int:service-activator
+		input-channel="forgetPasswordOtpValidateChannel" ref="passwordService"
+		method="validateForgotPasswordOtp" output-channel="deviceResponseChannel" />
+	
+	<int:service-activator
+		input-channel="otpRequestChannel" ref="passwordService"
+		method="userRequestForOTP" output-channel="deviceResponseChannel" />
+
+	<int:service-activator
+		input-channel="changePasswordChannel" ref="passwordService"
+		method="userRequestForChangePassword"
+		output-channel="deviceResponseChannel" />
+
+	<int:service-activator
+		input-channel="actualChangePasswordChannel" ref="passwordService"
+		method="changeUserPassword" output-channel="deviceResponseChannel" />
+
+
+	<int:header-value-router
+		input-channel="reportChannel" header-name="entity">
+		<int:mapping value="dailyStatus"
+			channel="dailyStatusReportChannel" />
+		<int:mapping value="kgiDailyStatus"
+			channel="kgiDailyStatusReportChannel" />
+
+	</int:header-value-router>
+
+
+	<int:service-activator ref="dailyVisitReport"
+		input-channel="dailyStatusReportChannel"
+		output-channel="deviceResponseChannel" />
+
+
+	<int:service-activator ref="kgiDailyVisitReport"
+		input-channel="kgiDailyStatusReportChannel"
+		output-channel="deviceResponseChannel" />
+
+	<int:service-activator
+		ref="collectionActivityReport"
+		input-channel="collectionActivityReportChannel"
+		output-channel="deviceResponseChannel" />
+
+
+	<int:service-activator ref="feedbackSnapReport"
+		input-channel="feedbackSnapReportChannel"
+		output-channel="deviceResponseChannel" />
+
+
+	<int:service-activator ref="visitIntensityReport"
+		input-channel="visitIntensityReportChannel"
+		output-channel="deviceResponseChannel" />
+
+
+
+
+	<!-- KGI Service -->
+
+
+	<int:service-activator
+		ref="rolloverCasesSearchService"
+		input-channel="rolloverCasesSearchChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="kgiCasesSubmissionService" input-channel="kgiCasesSubmitChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="kgiImageSubmissionService"
+		input-channel="kgiImageSubmissionChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+
+	<int:service-activator
+		ref="renewalCasesSearchService"
+		input-channel="renewalCasesSearchChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+
+	<!-- <int:service-activator ref="renewalCasesSubmitService" input-channel="renewalCasesSubmitChannel"
+		output-channel="deviceResponseChannel" method="execute" /> -->
+
+
+	<int:outbound-channel-adapter
+		ref="responseHandler" channel="deviceResponseChannel" />
+
+	<int:service-activator
+		input-channel="pddSyncChannel" output-channel="deviceResponseChannel"
+		ref="pddSyncService" method="execute" />
+
+
+	<int:service-activator
+		input-channel="pddSyncChannel" output-channel="deviceResponseChannel"
+		ref="pddSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="modelSyncChannel"
+		output-channel="deviceResponseChannel" ref="pddSyncService"
+		method="executeView" />
+
+	<int:service-activator ref="pddSearchService"
+		input-channel="pddSearchChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<int:service-activator
+		ref="pddImageSubmissionService"
+		input-channel="pddImageSubmissionChannel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<!-- added by bhushan for MDR SYNC -->
+	<int:service-activator
+		input-channel="mdrSyncChannel" output-channel="deviceResponseChannel"
+		ref="mdrSyncService" method="execute" />
+
+
+	<!-- added by Tushar for FAQ SYNC -->
+	<int:service-activator
+		input-channel="faqSyncChannel" output-channel="deviceResponseChannel"
+		ref="faqSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="casesSyncChannel"
+		output-channel="deviceResponseChannel" ref="casesSyncService"
+		method="execute" />
+
+
+	<int:service-activator
+		input-channel="generateOTPSubmissionChannel"
+		output-channel="deviceResponseChannel"
+		ref="generateOTPSubmissionService" method="execute" />
+
+		<!-- Code of Conduct 11 Nov 2020 -->
+		<int:service-activator
+		input-channel="codeOfConductChannel"
+		output-channel="deviceResponseChannel"
+		ref="codeOfConductService" method="execute" />
+
+
+<int:service-activator
+		input-channel="submitCodeOfConductChannel"
+		output-channel="deviceResponseChannel"
+		ref="codeOfConductService" method="submitCodeOfConduct" />
+
+<!-- Exotel call initate 24 Jan 2021-->
+		<int:service-activator
+		input-channel="exotelCallInitateChannel"
+		output-channel="deviceResponseChannel"
+		ref="exotelCallService" method="exotelCallInitateMethod" />
+
+	<int:service-activator
+		input-channel="checkOTPDetailsChannel"
+		output-channel="deviceResponseChannel"
+		ref="generateOTPSubmissionService" method="checkOTPDetails" />
+
+
+	<!-- Added by Adnan for lead territory SYNC -->
+	<int:service-activator
+		input-channel="leadTerritoryMasterSyncChannel"
+		output-channel="deviceResponseChannel"
+		ref="leadTerritoryMasterSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="leadProductMasterSyncChannel"
+		output-channel="deviceResponseChannel"
+		ref="leadProductMasterSyncService" method="execute" />
+
+	<int:service-activator
+		input-channel="AllPayCollectionChannel"
+		output-channel="deviceResponseChannel" ref="collectionSubmitService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="onlinePaymentChannel"
+		output-channel="deviceResponseChannel" ref="onlinePaymentService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="GpsLocationSubmissionChannel"
+		output-channel="deviceResponseChannel"
+		ref="gpsLocationSubmissionService" method="execute" />
+
+	<int:service-activator
+		ref="collectionPaymentStatus" input-channel="getPaymentStatusChanel"
+		output-channel="deviceResponseChannel" method="execute" />
+
+	<!-- Added for UPI -->
+	<int:service-activator
+		input-channel="UPIVerificationChannel"
+		output-channel="deviceResponseChannel" ref="upiVerificationService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="UPINotificationChannel"
+		output-channel="deviceResponseChannel" ref="upiNotificationService"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="notificationChannel"
+		output-channel="deviceResponseChannel" ref="notificationServiceRouter"
+		method="execute" />
+
+		<int:service-activator
+		input-channel="resendSmsSubmissionChannel"
+		output-channel="deviceResponseChannel" ref="resendSmsService"
+		method="execute" />
+
+<!-- Search case method ref 29 Apr 2021-->
+		<int:service-activator
+		input-channel="searchCaseChannel"
+		output-channel="deviceResponseChannel" ref="searchCasesOnline"
+		method="execute" />
+
+	<int:service-activator
+		input-channel="historyChannel" output-channel="deviceResponseChannel"
+		ref="historyService" method="execute" />
+		
+	<!-- Added for OTP type -->
+	<int:service-activator input-channel="otpChannel"
+		output-channel="deviceResponseChannel" ref="otpService"
+		method="execute" />
+	
+	<!-- Added for OTP type -->
+	<int:service-activator input-channel="verifiyOtpChannel"
+		output-channel="deviceResponseChannel" ref="verifyOtpService"
+		method="execute" />
+		
+	<!-- Added for Deposition Bank Mapping Sync -->
+	<int:service-activator
+		input-channel="depositionBankSyncChannel"
+		output-channel="deviceResponseChannel" ref="depositionBankSyncService"
+		method="execute" />
+		
+	<int:service-activator input-channel="realizationDateSyncChannel"
+		output-channel="deviceResponseChannel" ref="realizationDateSyncService" method="execute" />
+</beans>

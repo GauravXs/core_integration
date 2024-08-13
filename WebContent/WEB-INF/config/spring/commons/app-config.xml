@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- Application Configuration -->
+	<bean id="applicationConfiguration" class="com.mobicule.mcollections.core.configurations.ApplicationConfiguration" scope="singleton">
+		<property name="configMap">
+			<map>
+ 
+				<!-- <entry key="LDAP_URL" value="ldap://10.10.19.55:389"></entry> <entry key="LDAP_DEFAULT_USERNAME" value="MADMIN"></entry> <entry key="LDAP_DEFAULT_PASSWORD" value="Password@123"></entry> <entry key="LDAP_SEARCH_BASE" value="CN=Users,DC=KGPUAT,DC=COM"></entry> -->
+		<entry key="otpGenUrl"
+					value=""></entry>
+
+				<entry key="otpValRequest"
+					value=""></entry>
+
+<!--					<entry key="emailSmsUrl"
+					value="http://10.60.2.225:7080/Apprise/NotificationService"></entry> -->
+
+				<!-- <entry key="LDAP_URL" value="http://10.60.2.208:7080/rbl/esb/echldapservice"></entry> -->
+				<entry key="LDAP_URL" value="http://10.60.2.208:7080/rbl/esb/echldapservice"></entry>
+				
+				
+				<!-- UAT SMS API KEYS -->
+				<!-- <entry key="2FAsmsClientId" value="l7xx787028b24f7642d4b3bc733e59a1014f"></entry>
+				<entry key="2FAsmsClientSecrect" value="e1f82fd382fb41c3985d51cc11132747"></entry>	
+				<entry key="2FARequestEncryptionKey" value="e1f82fd382fb41c3985d51cc11132747"></entry>
+				<entry key="2FAsmsApi" value="https://apigwuat.kotak.com:8443/SMSAPI"></entry>
+				<entry key="2FAsmsAuthApi" value="https://apigwuat.kotak.com:8443/auth/oauth/v2/token"></entry> -->	
+				
+				
+					
+				
+				<entry key= "2FA_SMS_CONFIGKEY" value="MCOLLECT_19"></entry>							
+				
+				
+				<entry key="LDAP_DEFAULT_USERNAME" value="MCOL2"></entry>
+				<entry key="LDAP_DEFAULT_PASSWORD" value="Kotak@123"></entry>
+				<entry key="LDAP_SEARCH_BASE" value="CN=Users,DC=KGPUAT,DC=COM"></entry>
+				<entry key="PREFIX_SEARCH_USERNAME" value="cn="></entry>
+
+				<entry key="BACKGROUND_ACTIVITY_DELAY" value="3"></entry>
+				<entry key="AUTO_TRIGGER_ALARM_DELAY" value="31"></entry>
+				<entry key="STREETWALK_SEQUENCE_NOTIFICATION_DELAY" value="1080"></entry>
+				<entry key="TIME_VARIATION_PERMISSIBLE_DIFFERENCE" value="120"></entry>
+
+				<entry key="WEB_SERVICE_URL_MCORE" value="http://14.141.97.30:8085/mCollectionTIBCOTest/RandomCollection"></entry>
+				<entry key="WEB_SERVICE_URL_MCARD" value="https://10.10.19.189/MCARD/"></entry>
+				<entry key="WEB_SERVICE_URL_SMS_DISPATCHER" value="http://10.10.19.191:9200/"></entry>
+				<entry key="RSM_SERVICE_URL_SMS_DISPATCHER" value="http://10.10.19.191:9200/"></entry>
+
+				<entry key="VERSION_ON_SERVER" value="1.0"></entry>
+				<entry key="APK_URL" value="http://68.168.96.173:8080/mCollectionsKM/mcollections.apk"></entry>
+				<entry key="VERSION_TYPE" value=""></entry>
+
+				<entry key="SIGNATURE_IMAGE_FILE_PATH" value="E:\\mCollectionsPhase2\\images\\signatures\\" />
+				<entry key="IMAGE_FILE_PATH" value="/home/adnan/Rbl/Upload/settlement/" />
+				<entry key="RC_SIGNATURE_IMAGE_FILE_PATH" value="E:\\mCollectionsPhase2\\images\\randomCollections\\signatures\\" />
+				<entry key="RC_IMAGE_FILE_PATH" value="E:\\mCollectionsPhase2\\images\\randomCollections\\images\\" />
+
+				<!--<entry key="AUTO_PWD_RESET_INTERVAL" value="45" />-->
+				<!--added 101 days as password expiry was coming on every device-->
+				<entry key="AUTO_PWD_RESET_INTERVAL" value="1000" />
+
+				<entry key="SETTLEMENT_IMAGE_PATH" value="/home/bhushan/Bhushan/MYFiles/Kotak/SettlementImages/"></entry>
+				<!--for pdd -->
+				<entry key="PDD_IMAGE_PATH" value="/home/bhushan/Bhushan/MYFiles/Kotak/PddImages/"></entry>
+
+				<entry key="KGI_IMAGE_PATH" value="/home/bhushan/Bhushan/MYFiles/Kotak/KgiImages/"></entry>
+
+				<entry key="CIBIL_DOWNLOAD_URL" value="http://14.141.97.30:8085/mCollectionsKMIntegration-Phase4/KotakDownloadGateway?filePath=/home/bhushan/Desktop/"></entry>
+
+				<!-- Added -->
+				<entry key="WEBSERVICE_ALLPAYSMSPAYMENT_TIBCO" value="http://14.141.97.30:8085/payTibcoTest/AllPaySMSLink"></entry>
+				<entry key="WEBSERVICE_ALLPAYSTATUS_TIBCO" value="http://14.141.97.30:8085/payTibcoTest/StatusAPICall"></entry>
+
+
+				<!-- for UPI UAT-->
+				<entry key="WEBSERVICE_UPI_REQUESTPAYMENT" value="http://localhost:8085/UPIAPICallUtility/MakeTransaction"></entry>
+				<entry key="WEBSERVICE_UPI_VERIFY_VPA" value="https://10.240.20.225:10061/Merchant/VerifyVPA"></entry>
+				<entry key="WEBSERVICE_UPI_GETPAYMENTSTATUS" value="https://10.240.20.225:10061/Merchant/ChkTranStatus"></entry>
+
+
+				<entry key="imageQuantity">
+					<map>
+						<entry key="RTP" value="0" />
+						<entry key="PTP" value="0" />
+						<entry key="RFTP" value="0" />
+						<entry key="NAV" value="0" />
+						<entry key="FMJ" value="0" />
+						<entry key="FFS" value="0" />
+						<entry key="DIB" value="0" />
+						<entry key="DSP" value="0" />
+						<entry key="AT" value="0" />
+					</map>
+				</entry>
+				<!-- Signature Validation based on Collection Code -->
+				<entry key="signatureStatus">
+					<map>
+						<entry key="RTP" value="false" />
+						<entry key="PTP" value="false" />
+						<entry key="RFTP" value="false" />
+						<entry key="NAV" value="false" />
+						<entry key="FMJ" value="false" />
+						<entry key="FFS" value="false" />
+						<entry key="DIB" value="false" />
+						<entry key="DSP" value="false" />
+						<entry key="AT" value="false" />
+					</map>
+				</entry>
+
+				<entry key="CONFIGURATION_SYNC_HEADERS_MAP">
+					<map>
+						<entry key="portfolioCode" value="pCode" />
+						<entry key="portfolioName" value="pName" />
+						<entry key="configurationList" value="config" />
+						<entry key="configurationId" value="confId" />
+						<entry key="configurationName" value="confName" />
+						<entry key="configurationCode" value="code" />
+						<entry key="configurationDescription" value="confDesc" />
+						<entry key="configurationValue" value="value" />
+						<entry key="configurationType" value="type" />
+						<entry key="mappings" value="mappings" />
+					</map>
+				</entry>
+
+				<entry key="keyForGroupCases" value="collection_date"></entry>
+
+				<entry key="DEPOSITION_IMAGE_PATH" value="/app/RBL/DEPOSITION_IMAGE_FILE_PATH/"></entry>
+
+				<entry key="EXOTEL_DETAILS">
+				<map>
+				<entry key="EXOTEL_SID"  value="rblbank1m" />
+				<entry key="EXOTEL_API_KEY"   value="32f46e9f85a804defe55954bf785ba56bd561cb7d481fbc0" />
+			<entry key="EXOTEL_API_TOKEN" value="d89e8f7914f37ea19b8504afccff358fa289d4ddffb81660"/>
+				</map>
+				</entry>
+
+				<entry key="MAP_TO_JSON_CASES_HEADER">
+					<map>
+					<!-- <entry key="sol_id"  value="solId" />
+					<entry key="apac_card_number"  value="apacCardNumber" />
+					<entry key="PARTY_NAME"  value="partyName" />
+					<entry key="emiamt"  value="emiamt" />
+					<entry key="business_segment_act"  value="businessSegmentAct" />
+					<entry key="dpd"  value="dpd" />
+					<entry key="principle_os"  value="principleOs" />
+					<entry key="sanctioned_limit"  value="sanctionedLimit" />
+					<entry key="advance"  value="advance" />
+					<entry key="outstanding_balance"  value="outstandingBalance" />
+					<entry key="dis_amt"  value="disAmt" />
+					<entry key="schm_code"  value="schmCode" />
+					<entry key="schm_desc"  value="schmDesc" />
+					<entry key="emi_due_date_start"  value="emiDueDateStart" />
+					<entry key="first_emi_start_date"  value="firstEmiStartDate" />
+					<entry key="acct_open_date"  value="acctOpenDate" />
+					<entry key="npa_flg"  value="npaFlg" />
+					<entry key="npa_date"  value="npaDate" />
+					<entry key="chrge_off_flg"  value="chrgeOffFlg" />
+					<entry key="acct_cls_flg"  value="acctClsFlg" />
+					<entry key="acct_close_date"  value="acctCloseDate" />
+					<entry key="emi_remarks"  value="emiRemarks" />
+					<entry key="ovl_flag"  value="ovlFlag" />
+					<entry key="ovl_amt"  value="ovlAmt" />
+					<entry key="dly_dpd"  value="dlyDpd" />
+					<entry key="curr_pos"  value="currPos" />
+					<entry key="prin_dmd_os"  value="prinDmdOs" />
+					<entry key="other_dues"  value="otherDues" />
+					<entry key="int_dmd_os"  value="intDmdOs" />
+					<entry key="accr_penal_dmd_os"  value="accrPenalDmdOs" />
+					<entry key="total_overdue"  value="totalOverdue" />
+					<entry key="tot_recovery"  value="totRecovery" />
+					<entry key="total_collected_in_the_month"  value="totalCollectedInTheMonth" />
+					<entry key="charge_collected"  value="chargeCollected" />
+					<entry key="penal_collected"  value="penalCollected" />
+					<entry key="int_collected"  value="intCollected" />
+					<entry key="collection_date"  value="collectionDate" />
+					<entry key="last_payment_date"  value="lastPaymentDate" />
+					<entry key="rm"  value="rm" />
+					<entry key="rm_name"  value="rmName" />
+					<entry key="drawing_power"  value="drawingPower" />
+					<entry key="cust_dob"  value="custDob" />
+					<entry key="pan"  value="pan" />
+					<entry key="address_line1"  value="addressLine1" />
+					<entry key="address_line2"  value="addressLine2" />
+					<entry key="address_line3"  value="addressLine3" />
+					<entry key="city"  value="city" />
+					<entry key="state"  value="state" />
+					<entry key="country"  value="country" />
+					<entry key="zip_code"  value="zipCode" />
+					<entry key="home_ph_1"  value="homePh1" />
+					<entry key="work_ph_1"  value="workPh1" />
+					<entry key="perm_ph_1"  value="permPh1" />
+					<entry key="PARTY_MOBILE_NUMBER"  value="partyMobileNumber" />
+					<entry key="email_id"  value="emailId" />
+					<entry key="loan_end_date"  value="loanEndDate" />
+					<entry key="security_value"  value="securityValue" />
+					<entry key="billing_cycle_new"  value="billingCycleNew" />
+					<entry key="ucic"  value="ucic" />
+					<entry key="next_limit_drop_date"  value="nextLimitDropDate" />
+					<entry key="next_limit_amount"  value="nextLimitAmount" />
+					<entry key="mob"  value="mob" />
+					<entry key="tenor_mths"  value="tenorMths" />
+					<entry key="int_rate"  value="intRate" />
+					<entry key="next_emi_date"  value="nextEmiDate" />
+					<entry key="aadhaar_number"  value="aadhaarNumber" />
+					<entry key="region"  value="region" />
+					<entry key="alloc_city"  value="allocCity" />
+					<entry key="branch_name"  value="branchName" />
+					<entry key="branch_city_1"  value="branchCity1" />
+					<entry key="branch_state"  value="branchState" />
+					<entry key="alloc_type"  value="allocType" />
+					<entry key="allrsik_delq"  value="allrsikDelq" />
+					<entry key="tele_fr"  value="teleFr" />
+					<entry key="remark"  value="remark" />
+					<entry key="alloc_tag"  value="allocTag" />
+					<entry key="team"  value="team" />
+					<entry key="last_6_month_delq"  value="last6MonthDelq" />
+					<entry key="dly_risk"  value="dlyRisk" />
+					<entry key="for_dpd"  value="forDpd" />
+					<entry key="res_flag"  value="resFlag" />
+					<entry key="res_remark"  value="resRemark" />
+					<entry key="mis_date"  value="misDate" />
+					<entry key="amount"  value="amount" />
+					<entry key="com_rem"  value="comRem" />
+					<entry key="curntflag"  value="curntflag" />
+					<entry key="alloc_flg"  value="allocFlg" />
+					<entry key="fr_date"  value="frDate" />
+					<entry key="priority"  value="priority" />
+					<entry key="severity"  value="severity" />
+					<entry key="portfolio"  value="portfolio" />
+					<entry key="appl"  value="appl" />
+					<entry key="pres_mode"  value="presMode" />
+					<entry key="pres_stat"  value="presStat" />
+					<entry key="bounce_reason"  value="bounceReason" />
+					<entry key="rep_stat"  value="repStat" />
+					<entry key="rep_reason"  value="repReason" />
+					<entry key="porttype"  value="porttype" />
+					<entry key="outof90"  value="outof90" />
+					<entry key="payment_history"  value="paymentHistory" />
+					<entry key="last_pay_month"  value="lastPayMonth" />
+					<entry key="days_to_npa"  value="daysToNpa" />
+					<entry key="expected_npa_date"  value="expectedNpaDate" />
+					<entry key="last_month_agency"  value="lastMonthAgency" />
+					<entry key="last_month_collector"  value="lastMonthCollector" />
+					<entry key="stab_val"  value="stabVal" />
+					<entry key="norm_val"  value="normVal" />
+					<entry key="roll_val"  value="rollVal" />
+					<entry key="party_id"  value="partyId" />
+					<entry key="customer_source"  value="customerSource" />
+					<entry key="account_type"  value="accountType" />
+					<entry key="company_code"  value="companyCode" />
+					<entry key="employer_name"  value="employerName" />
+					<entry key="empr_addr1"  value="emprAddr1" />
+					<entry key="empr_addr2"  value="emprAddr2" />
+					<entry key="empr_addr3"  value="emprAddr3" />
+					<entry key="empr_city_code"  value="emprCityCode" />
+					<entry key="empr_cntry_code"  value="emprCntryCode" />
+					<entry key="empr_postal_code"  value="emprPostalCode" />
+					<entry key="empr_phone_num_1"  value="emprPhoneNum1" />
+					<entry key="empr_phone_num_2"  value="emprPhoneNum2" />
+					<entry key="empr_contact_person"  value="emprContactPerson" />
+					<entry key="processing_flag"  value="processingFlag" />
+					<entry key="modified_by"  value="modifiedBy" />
+					<entry key="modified_on"  value="modifiedOn" />
+					<entry key="delete_flag"  value="deleteFlag" />
+					<entry key="created_on"  value="createdOn" />
+					<entry key="created_by"  value="createdBy" />
+					<entry key="coll_status"  value="collStatus" />
+					<entry key="alloc_status"  value="allocStatus" />
+					<entry key="CASE_ID"  value="caseId" /> -->
+
+					<entry key="sol_id"  value="solId" />
+					<entry key="apac_card_number"  value="apacCardNumber" />
+					<entry key="party_name"  value="partyName" />
+					<entry key="emiamt"  value="emiamt" />
+					<entry key="business_segment_act"  value="businessSegmentAct" />
+					<entry key="dpd"  value="dpd" />
+					<entry key="principle_os"  value="principleOs" />
+					<entry key="sanctioned_limit"  value="sanctionedLimit" />
+					<entry key="advance"  value="advance" />
+					<entry key="outstanding_balance"  value="outstandingBalance" />
+					<entry key="dis_amt"  value="disAmt" />
+					<entry key="schm_code"  value="schmCode" />
+					<entry key="schm_desc"  value="schmDesc" />
+					<entry key="emi_due_date_start"  value="emiDueDateStart" />
+					<entry key="first_emi_start_date"  value="firstEmiStartDate" />
+					<entry key="acct_open_date"  value="acctOpenDate" />
+					<entry key="npa_flg"  value="npaFlg" />
+					<entry key="npa_date"  value="npaDate" />
+					<entry key="chrge_off_flg"  value="chrgeOffFlg" />
+					<entry key="acct_cls_flg"  value="acctClsFlg" />
+					<entry key="acct_close_date"  value="acctCloseDate" />
+					<entry key="emi_remarks"  value="emiRemarks" />
+					<entry key="ovl_flag"  value="ovlFlag" />
+					<entry key="ovl_amt"  value="ovlAmt" />
+					<entry key="dly_dpd"  value="dlyDpd" />
+					<entry key="curr_pos"  value="currPos" />
+					<entry key="prin_dmd_os"  value="prinDmdOs" />
+					<entry key="other_dues"  value="otherDues" />
+					<entry key="int_dmd_os"  value="intDmdOs" />
+					<entry key="accr_penal_dmd_os"  value="accrPenalDmdOs" />
+					<entry key="total_overdue"  value="totalOverdue" />
+					<entry key="tot_recovery"  value="totRecovery" />
+					<entry key="total_collected_in_the_month"  value="totalCollectedInTheMonth" />
+					<entry key="charge_collected"  value="chargeCollected" />
+					<entry key="penal_collected"  value="penalCollected" />
+					<entry key="int_collected"  value="intCollected" />
+					<entry key="collection_date"  value="collectionDate" />
+					<entry key="last_payment_date"  value="lastPaymentDate" />
+					<entry key="rm"  value="rm" />
+					<entry key="rm_name"  value="rmName" />
+					<entry key="drawing_power"  value="drawingPower" />
+					<entry key="cust_dob"  value="custDob" />
+					<entry key="pan"  value="pan" />
+					<entry key="address_line1"  value="addressLine1" />
+					<entry key="address_line2"  value="addressLine2" />
+					<entry key="address_line3"  value="addressLine3" />
+					<entry key="city"  value="city" />
+					<entry key="state"  value="state" />
+					<entry key="country"  value="country" />
+					<entry key="zip_code"  value="zipCode" />
+					<entry key="home_ph_1"  value="homePh1" />
+					<entry key="work_ph_1"  value="workPh1" />
+					<entry key="perm_ph_1"  value="permPh1" />
+					<entry key="party_mobile_number"  value="partyMobileNumber" />
+					<entry key="email_id"  value="emailId" />
+					<entry key="loan_end_date"  value="loanEndDate" />
+					<entry key="security_value"  value="securityValue" />
+					<entry key="billing_cycle_new"  value="billingCycleNew" />
+					<entry key="ucic"  value="ucic" />
+					<entry key="next_limit_drop_date"  value="nextLimitDropDate" />
+					<entry key="next_limit_amount"  value="nextLimitAmount" />
+					<entry key="mob"  value="mob" />
+					<entry key="tenor_mths"  value="tenorMths" />
+					<entry key="int_rate"  value="intRate" />
+					<entry key="next_emi_date"  value="nextEmiDate" />
+					<entry key="aadhaar_number"  value="aadhaarNumber" />
+					<entry key="region"  value="region" />
+					<entry key="alloc_city"  value="allocCity" />
+					<entry key="branch_name"  value="branchName" />
+					<entry key="branch_city_1"  value="branchCity1" />
+					<entry key="branch_state"  value="branchState" />
+					<entry key="alloc_type"  value="allocType" />
+					<entry key="allrsik_delq"  value="allrsikDelq" />
+					<entry key="tele_fr"  value="teleFr" />
+					<entry key="remark"  value="remark" />
+					<entry key="alloc_tag"  value="allocTag" />
+					<entry key="team"  value="team" />
+					<entry key="last_6_month_delq"  value="last6MonthDelq" />
+					<entry key="dly_risk"  value="dlyRisk" />
+					<entry key="for_dpd"  value="forDpd" />
+					<entry key="res_flag"  value="resFlag" />
+					<entry key="res_remark"  value="resRemark" />
+					<entry key="mis_date"  value="misDate" />
+					<entry key="amount"  value="amount" />
+					<entry key="com_rem"  value="comRem" />
+					<entry key="curntflag"  value="curntflag" />
+					<entry key="alloc_flg"  value="allocFlg" />
+					<entry key="fr_date"  value="frDate" />
+					<entry key="priority"  value="priority" />
+					<entry key="severity"  value="severity" />
+					<entry key="portfolio"  value="portfolio" />
+					<entry key="appl"  value="appl" />
+					<entry key="pres_mode"  value="presMode" />
+					<entry key="pres_stat"  value="presStat" />
+					<entry key="bounce_reason"  value="bounceReason" />
+					<entry key="rep_stat"  value="repStat" />
+					<entry key="rep_reason"  value="repReason" />
+					<entry key="porttype"  value="porttype" />
+					<entry key="outof90"  value="outof90" />
+					<entry key="payment_history"  value="paymentHistory" />
+					<entry key="last_pay_month"  value="lastPayMonth" />
+					<entry key="days_to_npa"  value="daysToNpa" />
+					<entry key="expected_npa_date"  value="expectedNpaDate" />
+					<entry key="last_month_agency"  value="lastMonthAgency" />
+					<entry key="last_month_collector"  value="lastMonthCollector" />
+					<entry key="stab_val"  value="stabVal" />
+					<entry key="norm_val"  value="normVal" />
+					<entry key="roll_val"  value="rollVal" />
+					<entry key="party_id"  value="partyId" />
+					<entry key="customer_source"  value="customerSource" />
+					<entry key="account_type"  value="accountType" />
+					<entry key="company_code"  value="companyCode" />
+					<entry key="employer_name"  value="employerName" />
+					<entry key="empr_addr1"  value="emprAddr1" />
+					<entry key="empr_addr2"  value="emprAddr2" />
+					<entry key="empr_addr3"  value="emprAddr3" />
+					<entry key="empr_city_code"  value="emprCityCode" />
+					<entry key="empr_cntry_code"  value="emprCntryCode" />
+					<entry key="empr_postal_code"  value="emprPostalCode" />
+					<entry key="empr_phone_num_1"  value="emprPhoneNum1" />
+					<entry key="empr_phone_num_2"  value="emprPhoneNum2" />
+					<entry key="empr_contact_person"  value="emprContactPerson" />
+					<entry key="processing_flag"  value="processingFlag" />
+					<entry key="modified_by"  value="modifiedBy" />
+					<entry key="modified_on"  value="modifiedOn" />
+					<entry key="delete_flag"  value="deleteFlag" />
+					<entry key="created_on"  value="createdOn" />
+					<entry key="created_by"  value="createdBy" />
+					<entry key="coll_status"  value="collStatus" />
+					<entry key="alloc_status"  value="allocStatus" />
+					<entry key="case_id"  value="caseId" />
+					<entry key="low_bal"  value="lowBal" />
+					<entry key="platinumvgpb"  value="platinumvgpb" />
+					<entry key="spl_acct_status"  value="splAcctStatus" />
+					<entry key="citycode"  value="citycode" />
+					<entry key="cpd"  value="cpd" />
+					<entry key="bill_cyc"  value="billCyc" />
+					<entry key="title"  value="title" />
+					<entry key="gender"  value="gender" />
+					<entry key="olc_reason"  value="olcReason" />
+					<entry key="promo"  value="promo" />
+					<entry key="c_logo"  value="cLogo" />
+					<entry key="vip_status"  value="vipStatus" />
+					<entry key="channel"  value="channel" />
+					<entry key="dt_opened"  value="dtOpened" />
+					<entry key="blk1"  value="blk1" />
+					<entry key="dt_blk1"  value="dtBlk1" />
+					<entry key="blk2"  value="blk2" />
+					<entry key="dt_blk2"  value="dtBlk2" />
+					<entry key="chgoff_st"  value="chgoffSt" />
+					<entry key="cr_limit"  value="crLimit" />
+					<entry key="curr_bal"  value="currBal" />
+					<entry key="cash_bal"  value="cashBal" />
+					<entry key="tpd"  value="tpd" />
+					<entry key="tcd"  value="tcd" />
+					<entry key="immed_due"  value="immedDue" />
+					<entry key="over_limit"  value="overLimit" />
+					<entry key="nationalit"  value="nationalit" />
+					<entry key="mar_status"  value="marStatus" />
+					<entry key="res_add1"  value="resAdd1" />
+					<entry key="res_add2"  value="resAdd2" />
+					<entry key="res_city"  value="resCity" />
+					<entry key="res_state"  value="resState" />
+					<entry key="res_pin"  value="resPin" />
+					<entry key="res_ph1"  value="resPh1" />
+					<entry key="mobile1"  value="mobile1" />
+					<entry key="fax_ph1"  value="faxPh1" />
+					<entry key="perm_add1"  value="permAdd1" />
+					<entry key="perm_add2"  value="permAdd2" />
+					<entry key="per_add3"  value="perAdd3" />
+					<entry key="perm_ph"  value="permPh" />
+					<entry key="employer"  value="employer" />
+					<entry key="designatio"  value="designatio" />
+					<entry key="off_add1"  value="offAdd1" />
+					<entry key="off_add2"  value="offAdd2" />
+					<entry key="off_city"  value="offCity" />
+					<entry key="off_pin"  value="offPin" />
+					<entry key="emp_ph2"  value="empPh2" />
+					<entry key="fax_ph2"  value="faxPh2" />
+					<entry key="mobile2"  value="mobile2" />
+					<entry key="off_extn"  value="offExtn" />
+					<entry key="abn_custno"  value="abnCustno" />
+					<entry key="per_email"  value="perEmail" />
+					<entry key="email_2"  value="email2" />
+					<entry key="col58"  value="col58" />
+					<entry key="col59"  value="col59" />
+					<entry key="col60"  value="col60" />
+					<entry key="pmt_lst_am"  value="pmtLstAm" />
+					<entry key="col62"  value="col62" />
+					<entry key="emp_code"  value="empCode" />
+					<entry key="nbr_nsf"  value="nbrNsf" />
+					<entry key="amt_lst_pu"  value="amtLstPu" />
+					<entry key="col66"  value="col66" />
+					<entry key="past_ctr"  value="pastCtr" />
+					<entry key="past_due"  value="pastDue" />
+					<entry key="d30_ctr"  value="d30Ctr" />
+					<entry key="d30"  value="d30" />
+					<entry key="d60_ctr"  value="d60Ctr" />
+					<entry key="d60"  value="d60" />
+					<entry key="d90_ctr"  value="d90Ctr" />
+					<entry key="d90"  value="d90" />
+					<entry key="d120_ct"  value="d120Ct" />
+					<entry key="d120"  value="d120" />
+					<entry key="d150_ct"  value="d150Ct" />
+					<entry key="d150"  value="d150" />
+					<entry key="d180_ct"  value="d180Ct" />
+					<entry key="d180"  value="d180" />
+					<entry key="d210_ct"  value="d210Ct" />
+					<entry key="d210"  value="d210" />
+					<entry key="history"  value="history" />
+					<entry key="bucket"  value="bucket" />
+					<entry key="rn_flg"  value="rnFlg" />
+					<entry key="secure_fg"  value="secureFg" />
+					<entry key="d_chargeoff_date"  value="dChargeoffDate" />
+					<entry key="dt_ach_pmt"  value="dtAchPmt" />
+					<entry key="reccat"  value="reccat" />
+					<entry key="hr_flag"  value="hrFlag" />
+					<entry key="legal_flag"  value="legalFlag" />
+					<entry key="se138_fla"  value="se138Fla" />
+					<entry key="rangecurr"  value="rangecurr" />
+					<entry key="region"  value="region" />
+					<entry key="sub_region"  value="subRegion" />
+					<entry key="source"  value="source" />
+					<entry key="skip_flag"  value="skipFlag" />
+					<entry key="set_bkt"  value="setBkt" />
+					<entry key="set_agency"  value="setAgency" />
+					<entry key="prvallobkt"  value="prvallobkt" />
+					<entry key="risk_flag"  value="riskFlag" />
+					<entry key="insignia_flag"  value="insigniaFlag" />
+					<entry key="agency_code"  value="agencyCode" />
+					<entry key="agency_name"  value="agencyName" />
+					<entry key="bkt"  value="bkt" />
+					<entry key="billcycle"  value="billcycle" />
+					<entry key="level1"  value="level1" />
+					<entry key="level2"  value="level2" />
+					<entry key="level3"  value="level3" />
+					<entry key="level4"  value="level4" />
+					<entry key="level5"  value="level5" />
+					<entry key="flag"  value="flag" />
+					<entry key="closing_date"  value="closingDate" />
+					<entry key="collector_id"  value="collectorId" />
+					<entry key="risk_class"  value="riskClass" />
+					<entry key="pl_prod_flg"  value="plProdFlg" />
+					<entry key="pl_prod_adv"  value="plProdAdv" />
+					<entry key="pl_dpd"  value="plDpd" />
+					<entry key="lap_prod_flg"  value="lapProdFlg" />
+					<entry key="lap_prod_adv"  value="lapProdAdv" />
+					<entry key="lap_dpd"  value="lapDpd" />
+					<entry key="sbb_prod_flg"  value="sbbProdFlg" />
+					<entry key="sbb_prod_adv"  value="sbbProdAdv" />
+					<entry key="sbb_dpd"  value="sbbDpd" />
+					<entry key="stmt_tad"  value="stmtTad" />
+					<entry key="stmt_mad"  value="stmtMad" />
+					<entry key="new_debits"  value="newDebits" />
+					<entry key="new_credits"  value="newCredits" />
+					<entry key="prinbal"  value="prinbal" />
+					<entry key="xbfl"  value="xbfl" />
+					<entry key="unique_id"  value="uniqueId" />
+					<entry key="alloc_close_date"  value="allocCloseDate" />
+					<entry key="alloc_open_date"  value="allocOpenDate" />
+					<entry key="acct_holder"  value="accHolder" />
+					<entry key="mailing_adr1"  value="mailAdd1" />
+					<entry key="mailing_adr2"  value="mailAdd2" />
+					<entry key="mailing_adr3"  value="mailAdd3" />
+					<entry key="mailing_city"  value="mailCity" />
+					<entry key="mailing_city_code"  value="mailCityCode" />
+					<entry key="mailing_state"  value="mailState" />
+					<entry key="mailing_country"  value="mailCountry" />
+					<entry key="mailing_pin"  value="mailPin" />
+					<entry key="permanent_adr1"  value="permAdd1" />
+					<entry key="permanent_adr2"  value="permAdd2" />
+					<entry key="permanent_adr3"  value="permAdd3" />
+					<entry key="permanent_city"  value="permCity" />
+					<entry key="permanent_city_code"  value="permCityCode" />
+					<entry key="permanent_state"  value="permState" />
+					<entry key="permanent_country"  value="permCountry" />
+					<entry key="permanent_pin"  value="permPin" />
+					<entry key="home_adr1"  value="homeAdd1" />
+					<entry key="home_adr2"  value="homeAdd2" />
+					<entry key="home_adr3"  value="homeAdd3" />
+					<entry key="home_city"  value="homeCity" />
+					<entry key="home_city_code"  value="homeCityCode" />
+					<entry key="home_state"  value="homeState" />
+					<entry key="home_country"  value="homeCountry" />
+					<entry key="home_pin"  value="homePin" />
+					<entry key="office_adr1"  value="offAdd1" />
+					<entry key="office_adr2"  value="offAdd2" />
+					<entry key="office_adr3"  value="offAdd3" />
+					<entry key="office_city"  value="offCity" />
+					<entry key="office_city_code"  value="officeCityCode" />
+					<entry key="office_state"  value="offState" />
+					<entry key="office_country"  value="offCountry" />
+					<entry key="office_pin"  value="offPin" />
+					<entry key="registered_adr1"  value="resAdd1" />
+					<entry key="registered_adr2"  value="resAdd2" />
+					<entry key="registered_adr3"  value="resAdd3" />
+					<entry key="registered_city"  value="resCity" />
+					<entry key="registered_city_code"  value="regiCityCode" />
+					<entry key="registered_state"  value="resState" />
+					<entry key="registered_country"  value="resCountry" />
+					<entry key="registered_pin"  value="resPin" />
+					<entry key="other_adr1"  value="otherAdd1" />
+					<entry key="other_adr2"  value="otherAdd2" />
+					<entry key="other_adr3"  value="otherAdd3" />
+					<entry key="other_city"  value="otherCity" />
+					<entry key="other_city_code"  value="otherCityCode" />
+					<entry key="other_state"  value="otherState" />
+					<entry key="other_country"  value="otherCountry" />
+					<entry key="other_pin"  value="otherPin" />
+					<entry key="total_collected_amount"  value="totalCollectedAmt" />
+					<entry key="cancle_receipt_number"  value="cancleReceiptNumber" />
+					<entry key="product_code"  value="productType" />
+					<entry key="coll_amt"  value="collAmt" />
+						<!-- 20 Nov 2020 when cases was not reflecting -->
+					<entry key="number_of_attempts"  value="numberOfAttempts" />
+					<entry key="settlement_request_status"  value="settlementRequestStatus" />
+					<entry key="calcpos"  value="calcPos" />
+					<entry key="is_overdue"  value="isOverdue" />
+					<entry key="opening_bucket" value="openingBucket"/>
+					<entry key="opening_dpd" value="openingDpd"/>
+					
+					<!-- 05-02-2024 new column added in Cases  -->
+					<entry key="collection_location"  value="collectionLocation" />
+					<entry key="total_amount_paid"  value="totalAmountPaid" />
+					<entry key="borrower_cibil_score"  value="borrowerCibilScore" />
+					<entry key="co_borrower_cibil_score"  value="coBorrowerCibilScore" />
+					<entry key="settlement_status"	value="settlementStatus"/>
+					<entry key="cheque_dishonoured_receivable"	value="ChequeDishonourReceivable"/>
+					<entry key="repo_status"	value="repoStatus"/>
+					<entry key="unPaidInstallment"	value="unPaidInstallment"/>
+					<entry key="foreClosureReceivable"	value="foreClosureReceivable"/>
+					<entry key="othercharges"	value="otherCharges"/>
+					
+					
+
+					
+					
+
+					
+					</map>
+				</entry>
+
+				<entry key="MAP_TO_JSON_SPECIAL_FEEDBACK_HEADER">
+					<map>
+						<entry key="APACNO" value="feedbackApacNo"></entry>
+						<entry key="FEEDBACKCODE" value="feedbackCode"></entry>
+						<entry key="REMARK" value="feedbackRemark"></entry>
+					</map>
+				</entry>
+
+				<entry key="BANK_CUSTOMERS">
+					<map>
+						<entry key="MICR" value="micr" />
+						<entry key="NAME" value="name" />
+						<entry key="BRANCH" value="branch" />
+						<entry key="LOCATION" value="location" />
+						<entry key="STATE" value="state" />
+					</map>
+				</entry>
+
+				<entry key="DEPOSITION_CCAPAC">
+					<map>
+						<entry key="BNAPAC" value="bnapac" />
+						<entry key="BANK_NAME" value="bankName" />
+						<entry key="BANK_DESCRIPTION" value="bankDescription" />
+						<entry key="INS_TYPE" value="insType" />
+						<entry key="CLIENT_CODE" value="clientCode" />
+					</map>
+				</entry>
+
+				<entry key="ReasonMaster">
+					<map>
+						<entry key="BNAPAC" value="bnapac" />
+						<entry key="BANK_NAME" value="bankName" />
+						<entry key="BANK_DESCRIPTION" value="bankDescription" />
+						<entry key="INS_TYPE" value="insType" />
+						<entry key="CLIENT_CODE" value="clientCode" />
+					</map>
+				</entry>
+
+				<entry key="FAQ_MASTER">
+					<map>
+						<entry key="ID" value="id" />
+						<entry key="FAQ_CODE" value="faqCode" />
+						<entry key="QUESTION_NO" value="questionNo" />
+						<entry key="QUESTION_DESC" value="questionDesc" />
+						<entry key="OPTION_TYPE" value="optionType" />
+						<entry key="MANDATORY" value="mandatory" />
+						<entry key="FILE_NAME" value="fileName" />
+					</map>
+				</entry>
+
+					<entry key="CASES">
+					<map>
+							<!-- <entry key="ID" value="caseId" />
+							<entry key="APPL" value="appl" />
+							<entry key="APAC_CARD_NUMBER" value="apacCardNumber" />
+							<entry key="PARTY_ID" value="partyId" />
+							<entry key="PARTY_NAME" value="partyName" />
+							<entry key="PARTY_MOBILE_NUMBER" value="partyMobileNumber" />
+							<entry key="ALLOC_BKT" value="allocBkt" />
+							<entry key="ALL_RISK" value="allRisk" />
+							<entry key="CHG_OFF" value="chgOff" />
+							<entry key="CITY" value="city" />
+							<entry key="CITY_CODE" value="cityCode" />
+							<entry key="CITY_FINAL" value="cityFinal" />
+							<entry key="CITY_CODE_FINAL" value="cityCodeFinal" />
+							<entry key="CLASSIFICATION" value="classification" />
+							<entry key="CORPORATE_FLAG" value="corporateFlag" />
+							<entry key="INSIGNIA_FLAG" value="insigniaFlag" />
+							<entry key="REGION" value="region" />
+							<entry key="RES_PIN" value="resPin" />
+							<entry key="RES_STATE" value="resState" />
+							<entry key="RISK_CLASS" value="riskClass" />
+							<entry key="RISK_FLAG" value="riskFlag" />
+							<entry key="RISK_SEG" value="riskSeg" />
+							<entry key="START_BKT" value="startBkt" />
+							<entry key="SUB_REGION" value="subRegion" />
+							<entry key="NPA_FLG" value="npaFlg" />
+							<entry key="STATE" value="state" />
+							<entry key="BILL_CYC_NEW" value="billCycNew" />
+							<entry key="ALLOC_CITY" value="allocCity" />
+							<entry key="TELE_FR" value="teleFr" />
+							<entry key="TEAM" value="team" />
+							<entry key="DECILE" value="decile" />
+							<entry key="RISK_CAT" value="riskCat" />
+							<entry key="PROD_TYPE" value="prodType" />
+							<entry key="PORT_TYPE" value="portType" />
+							<entry key="ALLOC_STATUS" value="allocStatus" />
+							<entry key="COLL_STATUS" value="collStatus" />
+							<entry key="ALLOC_TYPE" value="allocType" />
+							<entry key="USERNAME" value="username" />
+							<entry key="EMI_AMNT" value="emiAmnt" />
+							<entry key="ALTERNATE_NUMBER" value="alternateNumber" />
+							<entry key="POS_AMT" value="posAmt" />
+							<entry key="OVD_AMT" value="ovdAmt" />
+							<entry key="CYCLE_DATE" value="cycleDate" />
+							<entry key="ADDRESS" value="address" />
+							<entry key="BILLING_CYCLE" value="billingCycle" />
+							<entry key="PTP_DATE" value="ptpDate" />
+							<entry key="DUE_DATE" value="dueDate" />
+							<entry key="TOTAL_OUTSTAND" value="totalOutstand" /> -->
+							<entry key="sol_id"  value="solId" />
+					<entry key="apac_card_number"  value="apacCardNumber" />
+					<entry key="party_name"  value="partyName" />
+					<entry key="emiamt"  value="emiamt" />
+					<entry key="business_segment_act"  value="businessSegmentAct" />
+					<entry key="dpd"  value="dpd" />
+					<entry key="principle_os"  value="principleOs" />
+					<entry key="sanctioned_limit"  value="sanctionedLimit" />
+					<entry key="advance"  value="advance" />
+					<entry key="outstanding_balance"  value="outstandingBalance" />
+					<entry key="dis_amt"  value="disAmt" />
+					<entry key="schm_code"  value="schmCode" />
+					<entry key="schm_desc"  value="schmDesc" />
+					<entry key="emi_due_date_start"  value="emiDueDateStart" />
+					<entry key="first_emi_start_date"  value="firstEmiStartDate" />
+					<entry key="acct_open_date"  value="acctOpenDate" />
+					<entry key="npa_flg"  value="npaFlg" />
+					<entry key="npa_date"  value="npaDate" />
+					<entry key="chrge_off_flg"  value="chrgeOffFlg" />
+					<entry key="acct_cls_flg"  value="acctClsFlg" />
+					<entry key="acct_close_date"  value="acctCloseDate" />
+					<entry key="emi_remarks"  value="emiRemarks" />
+					<entry key="ovl_flag"  value="ovlFlag" />
+					<entry key="ovl_amt"  value="ovlAmt" />
+					<entry key="dly_dpd"  value="dlyDpd" />
+					<entry key="curr_pos"  value="currPos" />
+					<entry key="prin_dmd_os"  value="prinDmdOs" />
+					<entry key="other_dues"  value="otherDues" />
+					<entry key="int_dmd_os"  value="intDmdOs" />
+					<entry key="accr_penal_dmd_os"  value="accrPenalDmdOs" />
+					<entry key="total_overdue"  value="totalOverdue" />
+					<entry key="tot_recovery"  value="totRecovery" />
+					<entry key="total_collected_in_the_month"  value="totalCollectedInTheMonth" />
+					<entry key="charge_collected"  value="chargeCollected" />
+					<entry key="penal_collected"  value="penalCollected" />
+					<entry key="int_collected"  value="intCollected" />
+					<entry key="collection_date"  value="collectionDate" />
+					<entry key="last_payment_date"  value="lastPaymentDate" />
+					<entry key="rm"  value="rm" />
+					<entry key="rm_name"  value="rmName" />
+					<entry key="drawing_power"  value="drawingPower" />
+					<entry key="cust_dob"  value="custDob" />
+					<entry key="pan"  value="pan" />
+					<entry key="address_line1"  value="addressLine1" />
+					<entry key="address_line2"  value="addressLine2" />
+					<entry key="address_line3"  value="addressLine3" />
+					<entry key="city"  value="city" />
+					<entry key="state"  value="state" />
+					<entry key="country"  value="country" />
+					<entry key="zip_code"  value="zipCode" />
+					<entry key="home_ph_1"  value="homePh1" />
+					<entry key="work_ph_1"  value="workPh1" />
+					<entry key="perm_ph_1"  value="permPh1" />
+					<entry key="party_mobile_number"  value="partyMobileNumber" />
+					<entry key="email_id"  value="emailId" />
+					<entry key="loan_end_date"  value="loanEndDate" />
+					<entry key="security_value"  value="securityValue" />
+					<entry key="billing_cycle_new"  value="billingCycleNew" />
+					<entry key="ucic"  value="ucic" />
+					<entry key="next_limit_drop_date"  value="nextLimitDropDate" />
+					<entry key="next_limit_amount"  value="nextLimitAmount" />
+					<entry key="mob"  value="mob" />
+					<entry key="tenor_mths"  value="tenorMths" />
+					<entry key="int_rate"  value="intRate" />
+					<entry key="next_emi_date"  value="nextEmiDate" />
+					<entry key="aadhaar_number"  value="aadhaarNumber" />
+					<entry key="region"  value="region" />
+					<entry key="alloc_city"  value="allocCity" />
+					<entry key="branch_name"  value="branchName" />
+					<entry key="branch_city_1"  value="branchCity1" />
+					<entry key="branch_state"  value="branchState" />
+					<entry key="alloc_type"  value="allocType" />
+					<entry key="allrsik_delq"  value="allrsikDelq" />
+					<entry key="tele_fr"  value="teleFr" />
+					<entry key="remark"  value="remark" />
+					<entry key="alloc_tag"  value="allocTag" />
+					<entry key="team"  value="team" />
+					<entry key="last_6_month_delq"  value="last6MonthDelq" />
+					<entry key="dly_risk"  value="dlyRisk" />
+					<entry key="for_dpd"  value="forDpd" />
+					<entry key="res_flag"  value="resFlag" />
+					<entry key="res_remark"  value="resRemark" />
+					<entry key="mis_date"  value="misDate" />
+					<entry key="amount"  value="amount" />
+					<entry key="com_rem"  value="comRem" />
+					<entry key="curntflag"  value="curntflag" />
+					<entry key="alloc_flg"  value="allocFlg" />
+					<entry key="fr_date"  value="frDate" />
+					<entry key="priority"  value="priority" />
+					<entry key="severity"  value="severity" />
+					<entry key="portfolio"  value="portfolio" />
+					<entry key="appl"  value="appl" />
+					<entry key="pres_mode"  value="presMode" />
+					<entry key="pres_stat"  value="presStat" />
+					<entry key="bounce_reason"  value="bounceReason" />
+					<entry key="rep_stat"  value="repStat" />
+					<entry key="rep_reason"  value="repReason" />
+					<entry key="porttype"  value="porttype" />
+					<entry key="outof90"  value="outof90" />
+					<entry key="payment_history"  value="paymentHistory" />
+					<entry key="last_pay_month"  value="lastPayMonth" />
+					<entry key="days_to_npa"  value="daysToNpa" />
+					<entry key="expected_npa_date"  value="expectedNpaDate" />
+					<entry key="last_month_agency"  value="lastMonthAgency" />
+					<entry key="last_month_collector"  value="lastMonthCollector" />
+					<entry key="stab_val"  value="stabVal" />
+					<entry key="norm_val"  value="normVal" />
+					<entry key="roll_val"  value="rollVal" />
+					<entry key="party_id"  value="partyId" />
+					<entry key="customer_source"  value="customerSource" />
+					<entry key="account_type"  value="accountType" />
+					<entry key="company_code"  value="companyCode" />
+					<entry key="employer_name"  value="employerName" />
+					<entry key="empr_addr1"  value="emprAddr1" />
+					<entry key="empr_addr2"  value="emprAddr2" />
+					<entry key="empr_addr3"  value="emprAddr3" />
+					<entry key="empr_city_code"  value="emprCityCode" />
+					<entry key="empr_cntry_code"  value="emprCntryCode" />
+					<entry key="empr_postal_code"  value="emprPostalCode" />
+					<entry key="empr_phone_num_1"  value="emprPhoneNum1" />
+					<entry key="empr_phone_num_2"  value="emprPhoneNum2" />
+					<entry key="empr_contact_person"  value="emprContactPerson" />
+					<entry key="processing_flag"  value="processingFlag" />
+					<entry key="modified_by"  value="modifiedBy" />
+					<entry key="modified_on"  value="modifiedOn" />
+					<entry key="delete_flag"  value="deleteFlag" />
+					<entry key="created_on"  value="createdOn" />
+					<entry key="created_by"  value="createdBy" />
+					<entry key="coll_status"  value="collStatus" />
+					<entry key="alloc_status"  value="allocStatus" />
+					<entry key="CASE_ID"  value="caseId" />
+					<entry key="low_bal"  value="lowBal" />
+					<entry key="platinumvgpb"  value="platinumvgpb" />
+					<entry key="spl_acct_status"  value="splAcctStatus" />
+					<entry key="citycode"  value="citycode" />
+					<entry key="cpd"  value="cpd" />
+					<entry key="bill_cyc"  value="billCyc" />
+					<entry key="title"  value="title" />
+					<entry key="gender"  value="gender" />
+					<entry key="olc_reason"  value="olcReason" />
+					<entry key="promo"  value="promo" />
+					<entry key="c_logo"  value="cLogo" />
+					<entry key="vip_status"  value="vipStatus" />
+					<entry key="channel"  value="channel" />
+					<entry key="dt_opened"  value="dtOpened" />
+					<entry key="blk1"  value="blk1" />
+					<entry key="dt_blk1"  value="dtBlk1" />
+					<entry key="blk2"  value="blk2" />
+					<entry key="dt_blk2"  value="dtBlk2" />
+					<entry key="chgoff_st"  value="chgoffSt" />
+					<entry key="cr_limit"  value="crLimit" />
+					<entry key="curr_bal"  value="currBal" />
+					<entry key="cash_bal"  value="cashBal" />
+					<entry key="tpd"  value="tpd" />
+					<entry key="tcd"  value="tcd" />
+					<entry key="immed_due"  value="immedDue" />
+					<entry key="over_limit"  value="overLimit" />
+					<entry key="nationalit"  value="nationalit" />
+					<entry key="mar_status"  value="marStatus" />
+					<entry key="res_add1"  value="resAdd1" />
+					<entry key="res_add2"  value="resAdd2" />
+					<entry key="res_city"  value="resCity" />
+					<entry key="res_state"  value="resState" />
+					<entry key="res_pin"  value="resPin" />
+					<entry key="res_ph1"  value="resPh1" />
+					<entry key="mobile1"  value="mobile1" />
+					<entry key="fax_ph1"  value="faxPh1" />
+					<entry key="perm_add1"  value="permAdd1" />
+					<entry key="perm_add2"  value="permAdd2" />
+					<entry key="per_add3"  value="perAdd3" />
+					<entry key="perm_ph"  value="permPh" />
+					<entry key="employer"  value="employer" />
+					<entry key="designatio"  value="designatio" />
+					<entry key="off_add1"  value="offAdd1" />
+					<entry key="off_add2"  value="offAdd2" />
+					<entry key="off_city"  value="offCity" />
+					<entry key="off_pin"  value="offPin" />
+					<entry key="emp_ph2"  value="empPh2" />
+					<entry key="fax_ph2"  value="faxPh2" />
+					<entry key="mobile2"  value="mobile2" />
+					<entry key="off_extn"  value="offExtn" />
+					<entry key="abn_custno"  value="abnCustno" />
+					<entry key="per_email"  value="perEmail" />
+					<entry key="email_2"  value="email2" />
+					<entry key="col58"  value="col58" />
+					<entry key="col59"  value="col59" />
+					<entry key="col60"  value="col60" />
+					<entry key="pmt_lst_am"  value="pmtLstAm" />
+					<entry key="col62"  value="col62" />
+					<entry key="emp_code"  value="empCode" />
+					<entry key="nbr_nsf"  value="nbrNsf" />
+					<entry key="amt_lst_pu"  value="amtLstPu" />
+					<entry key="col66"  value="col66" />
+					<entry key="past_ctr"  value="pastCtr" />
+					<entry key="past_due"  value="pastDue" />
+					<entry key="d30_ctr"  value="d30Ctr" />
+					<entry key="d30"  value="d30" />
+					<entry key="d60_ctr"  value="d60Ctr" />
+					<entry key="d60"  value="d60" />
+					<entry key="d90_ctr"  value="d90Ctr" />
+					<entry key="d90"  value="d90" />
+					<entry key="d120_ct"  value="d120Ct" />
+					<entry key="d120"  value="d120" />
+					<entry key="d150_ct"  value="d150Ct" />
+					<entry key="d150"  value="d150" />
+					<entry key="d180_ct"  value="d180Ct" />
+					<entry key="d180"  value="d180" />
+					<entry key="d210_ct"  value="d210Ct" />
+					<entry key="d210"  value="d210" />
+					<entry key="history"  value="history" />
+					<entry key="bucket"  value="bucket" />
+					<entry key="rn_flg"  value="rnFlg" />
+					<entry key="secure_fg"  value="secureFg" />
+					<entry key="d_chargeoff_date"  value="dChargeoffDate" />
+					<entry key="dt_ach_pmt"  value="dtAchPmt" />
+					<entry key="reccat"  value="reccat" />
+					<entry key="hr_flag"  value="hrFlag" />
+					<entry key="legal_flag"  value="legalFlag" />
+					<entry key="se138_fla"  value="se138Fla" />
+					<entry key="rangecurr"  value="rangecurr" />
+					<entry key="region"  value="region" />
+					<entry key="allrisk"  value="allRisk" />
+
+					<entry key="sub_region"  value="subRegion" />
+					<entry key="source"  value="source" />
+					<entry key="skip_flag"  value="skipFlag" />
+					<entry key="set_bkt"  value="setBkt" />
+					<entry key="set_agency"  value="setAgency" />
+					<entry key="prvallobkt"  value="prvallobkt" />
+					<entry key="risk_flag"  value="riskFlag" />
+					<entry key="insignia_flag"  value="insigniaFlag" />
+					<entry key="agency_code"  value="agencyCode" />
+					<entry key="agency_name"  value="agencyName" />
+					<entry key="bkt"  value="bkt" />
+					<entry key="billcycle"  value="billcycle" />
+					<entry key="level1"  value="level1" />
+					<entry key="level2"  value="level2" />
+					<entry key="level3"  value="level3" />
+					<entry key="level4"  value="level4" />
+					<entry key="level5"  value="level5" />
+					<entry key="flag"  value="flag" />
+					<entry key="closing_date"  value="closingDate" />
+					<entry key="collector_id"  value="collectorId" />
+					<entry key="risk_class"  value="riskClass" />
+					<entry key="pl_prod_flg"  value="plProdFlg" />
+					<entry key="pl_prod_adv"  value="plProdAdv" />
+					<entry key="pl_dpd"  value="plDpd" />
+					<entry key="lap_prod_flg"  value="lapProdFlg" />
+					<entry key="lap_prod_adv"  value="lapProdAdv" />
+					<entry key="lap_dpd"  value="lapDpd" />
+					<entry key="sbb_prod_flg"  value="sbbProdFlg" />
+					<entry key="sbb_prod_adv"  value="sbbProdAdv" />
+					<entry key="sbb_dpd"  value="sbbDpd" />
+					<entry key="stmt_tad"  value="stmtTad" />
+					<entry key="stmt_mad"  value="stmtMad" />
+					<entry key="new_debits"  value="newDebits" />
+					<entry key="new_credits"  value="newCredits" />
+					<entry key="prinbal"  value="prinbal" />
+					<entry key="xbfl"  value="xbfl" />
+					<entry key="unique_id"  value="uniqueId" />
+					<entry key="alloc_close_date"  value="allocCloseDate" />
+					<entry key="alloc_open_date"  value="allocOpenDate" />
+					<entry key="acct_holder"  value="accHolder" />
+					<entry key="mailing_adr1"  value="mailAdd1" />
+					<entry key="mailing_adr2"  value="mailAdd2" />
+					<entry key="mailing_adr3"  value="mailAdd3" />
+					<entry key="mailing_city"  value="mailCity" />
+					<entry key="mailing_city_code"  value="mailCityCode" />
+					<entry key="mailing_state"  value="mailState" />
+					<entry key="mailing_country"  value="mailCountry" />
+					<entry key="mailing_pin"  value="mailPin" />
+					<entry key="permanent_adr1"  value="permAdd1" />
+					<entry key="permanent_adr2"  value="permAdd2" />
+					<entry key="permanent_adr3"  value="permAdd3" />
+					<entry key="permanent_city"  value="permCity" />
+					<entry key="permanent_city_code"  value="permCityCode" />
+					<entry key="permanent_state"  value="permState" />
+					<entry key="permanent_country"  value="permCountry" />
+					<entry key="permanent_pin"  value="permPin" />
+					<entry key="home_adr1"  value="homeAdd1" />
+					<entry key="home_adr2"  value="homeAdd2" />
+					<entry key="home_adr3"  value="homeAdd3" />
+					<entry key="home_city"  value="homeCity" />
+					<entry key="home_city_code"  value="homeCityCode" />
+					<entry key="home_state"  value="homeState" />
+					<entry key="home_country"  value="homeCountry" />
+					<entry key="home_pin"  value="homePin" />
+					<entry key="office_adr1"  value="offAdd1" />
+					<entry key="office_adr2"  value="offAdd2" />
+					<entry key="office_adr3"  value="offAdd3" />
+					<entry key="office_city"  value="offCity" />
+					<entry key="office_city_code"  value="officeCityCode" />
+					<entry key="office_state"  value="offState" />
+					<entry key="office_country"  value="offCountry" />
+					<entry key="office_pin"  value="offPin" />
+					<entry key="registered_adr1"  value="resAdd1" />
+					<entry key="registered_adr2"  value="resAdd2" />
+					<entry key="registered_adr3"  value="resAdd3" />
+					<entry key="registered_city"  value="resCity" />
+					<entry key="registered_city_code"  value="regiCityCode" />
+					<entry key="registered_state"  value="resState" />
+					<entry key="registered_country"  value="resCountry" />
+					<entry key="registered_pin"  value="resPin" />
+					<entry key="other_adr1"  value="otherAdd1" />
+					<entry key="other_adr2"  value="otherAdd2" />
+					<entry key="other_adr3"  value="otherAdd3" />
+					<entry key="other_city"  value="otherCity" />
+					<entry key="other_city_code"  value="otherCityCode" />
+					<entry key="other_state"  value="otherState" />
+					<entry key="other_country"  value="otherCountry" />
+					<entry key="other_pin"  value="otherPin" />
+					<entry key="outstanding_after_canrecipt"  value="outstandingAfterCanrecipt" />
+					<entry key="cancle_receipt_number"  value="cancleReceiptNumber" />
+					<entry key="product_code"  value="productType" />
+					<entry key="coll_amt"  value="collAmt" />
+                    <entry key="total_collected_amount"  value="totalCollectedAmt" />
+					<entry key="cancle_receipt_number"  value="cancleReceiptNumber" />
+					<entry key="number_of_attempts"  value="numberOfAttempts" />
+
+					</map>
+				</entry>
+
+				<entry key="key" value="k0t@km0b!culeR$y" />
+				<entry key="iv" value="k0t@km0b!culeR$y" />
+
+				<entry key="DAILY_STATUS_REPORT_COLLECTION_DB_COLUMN">
+					<list>
+						<value>party_name</value>
+						<value>contract_account_number</value>
+						<value>business_partner_number</value>
+						<value>receipt_number</value>
+						<value>payment_mode</value>
+						<value>submission_date_time</value>
+						<value>amount</value>
+						<value>collection_code</value>
+						<value>ResultCode</value>
+						<value>ActionCode</value>
+					</list>
+				</entry>
+
+
+				<entry key="KGI_DAILY_STATUS_REPORT_COLLECTION_DB_COLUMN">
+					<list>
+						<value>party_name</value>
+						<value>party_id</value>
+						<value>business_partner_number</value>
+						<value>receipt_number</value>
+						<value>payment_mode</value>
+						<value>submission_date_time</value>
+						<value>amount</value>
+						<value>collection_code</value>
+						<value>type</value>
+
+
+					</list>
+				</entry>
+
+				<entry key="STUCK_COLLECTION_DB_COLUMN">
+					<list>
+						<value>party_name</value>
+						<value>contract_account_number</value>
+						<value>business_partner_number</value>
+						<value>receipt_number</value>
+						<value>payment_mode</value>
+						<value>submission_date_time</value>
+						<value>amount</value>
+						<value>appl</value>
+					</list>
+				</entry>
+
+				<entry key="DAILY_STATUS_REPORT_JSON_KEY">
+					<map>
+						<entry key="receipt_number" value="receiptNumber" />
+						<entry key="party_name" value="partyName" />
+						<entry key="contract_account_number" value="partId" />
+						<entry key="business_partner_number" value="APAC" />
+						<entry key="payment_mode" value="paymentMode" />
+						<entry key="amount" value="amount"></entry>
+						<entry key="submission_date_time" value="collectionDate" />
+						<entry key="collection_code" value="collectionCode" />
+						<entry key="ResultCode" value="resultCode" />
+						<entry key="ActionCode" value="actionCode" />
+
+					</map>
+				</entry>
+
+			  <entry key="KGI_DAILY_STATUS_REPORT_JSON_KEY">
+					<map>
+						<entry key="receipt_number" value="receiptNumber" />
+						<entry key="party_name" value="partyName" />
+						<entry key="party_id" value="partId" />
+						<entry key="business_partner_number" value="APAC" />
+						<entry key="payment_mode" value="paymentMode" />
+						<entry key="amount" value="amount"></entry>
+						<entry key="submission_date_time" value="collectionDate" />
+						<entry key="collection_code" value="collectionCode" />
+						<entry key="type" value="type" />
+
+
+					</map>
+				</entry>
+
+				<entry key="STUCK_COLLECTION_JSON_HEADER">
+					<map>
+						<entry key="receipt_number" value="receiptNumber" />
+						<entry key="party_name" value="partyName" />
+						<entry key="contract_account_number" value="partId" />
+						<entry key="business_partner_number" value="APAC" />
+						<entry key="payment_mode" value="paymentMode" />
+						<entry key="submission_date_time" value="collectionDate" />
+						<entry key="amount" value="amount"></entry>
+						<entry key="appl" value="portfolio"></entry>
+					</map>
+				</entry>
+				<entry key="cibilScore" value="650"></entry>
+
+
+				<!-- New Sync Added -->
+				 <entry key="LEAD_PRODUCT_MASTER">
+				    <map>
+
+				        <entry key="PRODUCT_CODE" value="productCode"></entry>
+				        <entry key="PRODUCT_DESCRIPTION" value="productDescription"></entry>
+
+				    </map>
+				</entry>
+
+				<entry key="LEAD_TERRITORY_MASTER">
+				    <map>
+				        <entry key="ID" value="rowId"></entry>
+				        <entry key="STATE_DESCRIPTION" value="state"></entry>
+				        <entry key="DISTRICT_DESCRIPTION" value="district"></entry>
+				        <entry key="TALUKA_DESCRIPTION" value="taluka"></entry>
+				        <entry key="TERRITORY_CODE" value="territoryCode"></entry>
+
+				    </map>
+				</entry>
+
+				<entry key="COLLECTION_ACTIVITY_REPORT_DB_COL">
+					<list>
+						<value>PARTY_NAME</value>
+						<value>CONTRACT_ACCOUNT_NUMBER</value>
+						<value>BUSINESS_PARTNER_NUMBER</value>
+						<value>RECEIPT_NUMBER</value>
+						<value>PAYMENT_MODE</value>
+						<value>SUBMISSION_DATE_TIME</value>
+						<value>AMOUNT</value>
+						<value>COLLECTION_CODE</value>
+						<value>ACTIONCODE</value>
+						<value>RESULTCODE</value>
+					</list>
+				</entry>
+				
+				
+				<!-- PROD BANK--> 
+				<!-- <entry key="CCAPAC_PANINDIA">
+         	 		<list>
+         	 			<value>PANINDIA-6302</value>
+         	 		</list>
+         	    </entry>   --> 
+         	    <!--  <entry key="CCAPAC_DLLN">
+         	 		<list>
+         	 			<value>DLLN-6410</value>
+         	 		</list>
+         	    </entry> -->
+         	    
+         	    
+         	    <!-- PROD PRIME--> 
+				<!-- <entry key="CCAPAC_PANINDIA">
+         	 		<list>
+         	 			<value>PANINDIA-112143</value>
+         	 		</list>
+         	    </entry> -->
+         	   
+         	    
+         	    
+         	    
+         	    <!-- UAT --> 
+         	    <entry key="CCAPAC_PANINDIA">
+         	 		<list>
+         	 			<value>PANINDIA-2003</value>
+         	 		</list>
+         	    </entry>
+         	   <!--  <entry key="CCAPAC_DLLN">
+         	 		<list>
+         	 			<value>DLLN-6410</value>
+         	 		</list>
+         	    </entry> -->
+         	    
+         	    
+         	    
+
+				<entry key="COLLECTION_ACTIVITY_REPORT_JSON_KEY">
+					<map>
+						<entry key="RECEIPT_NUMBER" value="receiptNumber" />
+						<entry key="PARTY_NAME" value="partyName" />
+						<entry key="CONTRACT_ACCOUNT_NUMBER" value="partId" />
+						<entry key="BUSINESS_PARTNER_NUMBER" value="APAC" />
+						<entry key="PAYMENT_MODE" value="paymentMode" />
+						<entry key="AMOUNT" value="amount"></entry>
+						<entry key="SUBMISSION_DATE_TIME" value="collectionDate" />
+						<entry key="COLLECTION_CODE" value="collectionCode" />
+						<entry key="ACTIONCODE" value="resultCode" />
+						<entry key="RESULTCODE" value="actionCode" />
+
+					</map>
+				</entry>
+				<!-- jmiX UAT -->
+				<entry key="SETTLEMENT_BUCKET" value="http://localhost:8980/api/approval-metrix-new"></entry>
+                                <entry key="historyEarlierRange" value="30"></entry>
+            
+				<!-- <entry key="senderId" value="abhishek.shelar@mobicule.com" />
+				<entry key="senderPassword" value="Abhi@123456789" />
+				<entry key="hostname" value="smtp.gmail.com"/>
+				<entry key="port" value="465"/>
+				<entry key="auth" value="true"/> 	
+				<entry key="starttlsEnable" value="true"/>
+				<entry key="mailDebug" value="true"/> -->
+				
+				<!-- Kotak -->
+				<!-- <entry key="senderId" value="MCollection@kotak.com" />
+				<entry key="hostname" value="121.241.26.24"/>
+				<entry key="port" value="25"/>
+				<entry key="auth" value="false"/>
+				<entry key="starttlsEnable" value="true"/>
+				<entry key="mailDebug" value="true"/> -->
+				
+				
+				<!--Entity aws bank -->
+				<!-- <entry key="settlementRestUrl" value="http://10.16.164.3:8888/mcollect-3-web/rest/files"></entry>  -->
+				
+				<!-- aws bank -->
+				<!-- <entry key="settlementRestUrl" value="https://portal.mcollects.com/mcollection-integration-3-0-deposition/rest/files"></entry>  -->
+				
+				<!-- aws prime -->
+				 <!-- <entry key="settlementRestUrl" value="https://portal.mcollects.com/mcollect-prime-3-0/rest/files"></entry> --> 
+				 
+				 <!-- UAT BANK -->
+				<!--  <entry key="settlementRestUrl" value="https://kmbluat.mcollects.com/mcollect/rest/files"></entry> --> 
+				
+				<!-- UAT PRIME -->
+				<!-- <entry key="settlementRestUrl" value="https://kmpluat.mcollects.com/mcollect-prime/rest/files"></entry> -->
+				
+				 <!-- Prod BANK -->
+				 <!-- <entry key="settlementRestUrl" value="https://kmbl.mcollects.com/mcollect-bank/rest/files"></entry> -->
+				
+				<!-- Prod PRIME -->
+				<!-- <entry key="settlementRestUrl" value="https://kmpl.mcollects.com/mcollect-prime/rest/files"></entry> -->
+				
+				<!-- <entry key="settlementRestUrl" value="http://10.1.1.196:8083/rest/files"></entry>-->
+
+				<!-- <entry key="settlementRestUrl" value="https://kmpl.mcollects.com/mcollect-prime-cug/rest/files"></entry> -->
+				
+				<!-- Key to check COC Enable -->
+              <entry key="IS_COC_ENABLE" value="false"></entry>
+              
+              <!-- ALLOWED ANDROID VERSIONS LIST -->
+             	<entry key="ALLOWED_ANDROID_VERSION" value="10"></entry>
+             	
+	<!-- DIGITAL SMS CONFIGURATION FOR 2FA -->
+	<entry key="sms_basic_auth_username" value="client"></entry>
+	<entry key="sms_basic_auth_password" value="secret"></entry>
+
+	<entry key="sms_fieldApp_auth_username" value="fieldapp"></entry>
+	<entry key="sms_fieldApp_auth_password" value="Fieldapp@123"></entry>
+	<entry key="sms_auth_username" value="admin"></entry>
+	<entry key="sms_auth_password" value="digital"></entry>
+
+	<entry key="ForgotPassword_digital_sms_auth_username" value="mcollectCore"></entry>
+	<entry key="ForgotPassword_sender_id" value="CSBBNK"></entry>
+	<entry key="ForgotPassword_campaign_name" value="FORGOTPASSWORD"></entry>
+	<entry key="ForgotPassword_dlt_temp_id"
+		value="1107172060359630671"></entry>
+	<entry key="ForgotPassword_language" value="English"></entry>
+	<entry key="ForgotPassword_configKey" value="ForgotPassword"></entry>
+
+<!-- UAT CSB -->
+
+<entry key="external_sms_url"
+		value="http://10.16.151.5:8898/mcollect-digital/mcollect-sms"></entry> 
+<entry key="sms_send_url"
+		value="http://10.16.151.5:8898/mcollect-digital/oauth/token"></entry>
+		             	
+
+
+<!-- PROD CSB -->             	
+<!-- <entry key="external_sms_url"
+		value="http://10.17.1.5:8888/mcollect-digital/mcollect-sms"></entry>
+<entry key="sms_send_url"
+		value="http://10.17.1.5:8888/mcollect-digital/oauth/token"></entry> -->
+
+         	  
+         	  
+         	  
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="port" value="25" />
+		<property name="host" value="smtp.mobicule.com" />
+		<property name="username" value="support@mobicule.com" />
+		<property name="password" value="kalbom256" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.debug">true</prop>
+				<!-- <prop key="mail.smtp.ssl.enable">false</prop> <prop key="mail.smtp.starttls.enable">false</prop> -->
+			</props>
+		</property>
+	</bean>
+
+
+
+	<bean id="simpleMailMessageForCashPaymentCreditCard" class="org.springframework.mail.SimpleMailMessage">
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject"
+			value="Kotak  Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Dear %s,
+<br/><br/>
+We thank you for the payment made towards Kotak Credit Card NO. %s to Kotak Mahindra Bank through our representative.
+The details of the payment made are as stated below :
+<br/>
+Bill No. <u>%s</u> &nbsp; &nbsp; &nbsp; Payment Received : Cash  Rs.%s
+<br/>
+Please note that the payment will be credited to your Card No.%s with Kotak Mahindra Bank Ltd  and will be reflected in your next bill.
+<br/>
+Thank you for making the payment.
+<br/>
+Kotak Mahindra Bank Ltd.
+</br><br/>
+
+(This is an auto generated email please do not reply to this id. In case you have any query, please write to support@kotak.com)
+
+		]]>
+			</value>
+		</property>
+	</bean>
+
+	<bean id="simpleMailMessageForCashPaymentLoan" class="org.springframework.mail.SimpleMailMessage">
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject"
+			value="Kotak  Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Dear %s,
+<br/><br/>
+We thank you for the payment made towards Kotak Salaried Personal Loan AccountNo. %s to Kotak Mahindra Bank through our representative.
+The details of the payment made are as stated below :
+<br/>
+Bill No. <u>%s</u> &nbsp; &nbsp; &nbsp; Payment Received : Cash  Rs.%s
+<br/>
+Please note that the payment will be credited to your Loan AccountNo.%s with Kotak Mahindra Bank Ltd  and will be reflected in your next bill.
+<br/>
+Thank you for making the payment.
+<br/>
+Kotak Mahindra Bank Ltd.
+</br><br/>
+
+(This is an auto generated email please do not reply to this id. In case you have any query, please write to support@kotak.com)
+
+		]]>
+			</value>
+		</property>
+	</bean>
+
+
+	<bean id="simpleMailMessageForChequePaymentCreditCard" class="org.springframework.mail.SimpleMailMessage">
+
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject"
+			value="Kotak  Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Dear %s,
+<br/><br/>
+We thank you for the payment made towards Kotak Credit Card NO. %s to Kotak Mahindra Bank through our representative.
+The details of the payment made are as stated below :
+<br/>
+Bill No. <u>%s</u> &nbsp; &nbsp; &nbsp; Payment Received : Cheque  Rs.%s
+<br/>
+Please note that the payment will be credited to your Credit Card NO.%s with Kotak Mahindra Bank Ltd  and will be reflected in your next bill.
+<br/>
+Thank you for making the payment.
+<br/>
+Kotak Mahindra Bank Ltd.
+</br><br/>
+
+(This is an auto generated email please do not reply to this id. In case you have any query, please write to support@kotak.com)
+
+		]]>
+			</value>
+		</property>
+	</bean>
+
+	<bean id="simpleMailMessageForChequePaymentLoan" class="org.springframework.mail.SimpleMailMessage">
+
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject"
+			value="Kotak  Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Dear %s,
+<br/><br/>
+We thank you for the payment made towards Kotak Salaried Personal Loan AccountNo.  %s to Kotak Mahindra Bank through our representative.
+The details of the payment made are as stated below :
+<br/>
+Bill No. <u>%s</u> &nbsp; &nbsp; &nbsp; Payment Received : Cheque  Rs.%s
+<br/>
+Please note that the payment will be credited to your Loan AccountNo.%s with Kotak Mahindra Bank Ltd  and will be reflected in your next bill.
+<br/>
+Thank you for making the payment.
+<br/>
+Kotak Mahindra Bank Ltd.
+</br><br/>
+
+(This is an auto generated email please do not reply to this id. In case you have any query, please write to support@kotak.com)
+
+		]]>
+			</value>
+		</property>
+	</bean>
+
+	<bean id="simpleMailMessageForCardPayment" class="org.springframework.mail.SimpleMailMessage">
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject" value="Kotak Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Dear %s,
+
+We thank you for the payment made towards the Kotak Mahindra Bank Bill through our representative.
+<br/>
+We inform you that you have made the payment by Credit-Debit card. The details of the payment received are stated below:
+<br/><br/>
+Bill No. %s
+<br/>
+Credit / Debit Card No. %s
+<br/>
+Paid Rs.%s
+<br/>
+Paid on %s
+<br/><br/>
+Please note that the payment will be credited to your Contract Account with Kotak Mahindra Bank on realization and will be reflected in your next bill.
+<br/><br/>
+Thank you for making the payment.
+<br/>
+Kotak Mahindra Bank Ltd.
+<br/>
+<br/>
+
+(This is an auto generated email please do not reply to this id. In case you have any query, please write to support@kotak.com) 
+			
+		
+			
+		]]>
+			</value>
+		</property>
+	</bean>
+
+
+	<bean id="simpleMailMessageForDDPDC" class="org.springframework.mail.SimpleMailMessage">
+
+
+		<property name="from" value="support@mobicule.com" />
+		<property name="subject"
+			value="Kotak  Mahindra Bank Ltd Payment Confirmation" />
+		<property name="text">
+			<value>
+
+		<![CDATA[
+Respected Sir/Madam,
+<br/><br/>
+We wish to acknowledge payment received towards your %s No %s with Kotak Mahindra Bank.
+ <br/>
+The Details of the payment received as below:
+ <br/>
+Mobile Receipt No. %s
+<br/> 
+Payment details : %s Rs.%s on %s via %s
+ <br/>
+Please note  payment will soon reflect against your  Loan Account No. %s.
+Credits will be subject to receipt of clearance for payments received Cheque\DD\PDC.
+ <br/>
+Thank you for making the payment.
+ <br/>
+ <br/>
+Kotak Mahindra Bank Ltd.
+ <br/><br/>
+ 
+(This is an auto generated email please do not reply to this id. In case you have any query , please contact our customer service executive on the Toll Free No 1800 102 6022 quoting your Loan \ Credit Card no.)	]]>
+			</value>
+		</property>
+	</bean>
+	
+	 <bean id="mailSenderUtility"
+		class="com.mobicule.mcollections.core.commons.MailSenderUtility">
+		<property name="applicationConfiguration" ref="applicationConfiguration"></property>
+	</bean> 
+</beans>

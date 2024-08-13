@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:ws="http://www.springframework.org/schema/integration/ws"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.0.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.0.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-2.0.xsd
+		http://www.springframework.org/schema/integration/stream
+      	http://www.springframework.org/schema/integration/stream/spring-integration-stream-2.0.xsd
+      	http://www.springframework.org/schema/integration/ws
+      	http://www.springframework.org/schema/integration/ws/spring-integration-ws-2.0.xsd
+      	http://www.springframework.org/schema/util 
+      	http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="configurationSyncService"
+		class="com.mobicule.mcollections.integration.sync.ConfigurationSyncService">
+		<property name="configurationService" ref="configurationService" />
+		<property name="userService" ref="systemUserService" />
+		<property name="applicationConfiguration" ref="applicationConfiguration" />
+		<property name="applicationConfigurationObject" ref="applicationConfiguration" />
+	</bean>
+
+	<bean id="portfolioSyncService"
+		class="com.mobicule.mcollections.integration.sync.PortfolioSyncServiceImplementation">
+		<property name="portfolioSyncCoreService" ref="portfolioSyncCoreService" />
+	</bean>
+
+	<bean id="streetwalkSequenceSyncService"
+		class="com.mobicule.mcollections.integration.sync.StreetwalkSequenceSyncService" />
+
+	<bean id="bankSyncService"
+		class="com.mobicule.mcollections.integration.sync.BankSyncService">
+	</bean>
+
+	<bean id="stuckCollectionExtractService"
+		class="com.mobicule.mcollections.integration.sync.StuckCollectionService">
+		<property name="collectionService" ref="collectionService" />
+	</bean>
+
+	<bean id="specialFeedbackSyncService"
+		class="com.mobicule.mcollections.integration.sync.SpecialFeedbackSyncService">
+		<property name="specialFeedbackService" ref="specialFeedbackServiceImplem"></property>
+	</bean>
+	
+	<!--for pdd -->
+	<bean id="pddSyncService"
+		class="com.mobicule.mcollections.integration.sync.PddSyncService">
+		<property name="pddService" ref="pddService" />
+		<property name="userService" ref="systemUserService" />
+	</bean>
+	
+<!--added for MPOS MDR SYNC	-->
+	<bean id="mdrSyncService"
+		class="com.mobicule.mcollections.integration.sync.MposConfigurationSyncService">
+		<property name="mdrSyncCoreService" ref="mdrSyncCoreService" />
+	</bean>
+	
+ <!--added for Faq SYNC	-->
+		<bean id="faqSyncService"
+		class="com.mobicule.mcollections.integration.sync.FaqSyncService">
+		<property name="applicationConfiguration" ref="applicationConfiguration" />
+	</bean>
+
+	<!-- Added for lead territory SYNC -->
+	<bean id="leadTerritoryMasterSyncService"
+		class="com.mobicule.mcollections.integration.sync.LeadTerritorySyncService">
+	</bean>
+	
+	<bean id="leadProductMasterSyncService"
+		class="com.mobicule.mcollections.integration.sync.ProductMasterSyncService">
+	</bean>
+	
+	<bean id="casesSyncService"
+		class="com.mobicule.mcollections.integration.sync.CasesSyncService">
+		<property name="applicationConfiguration" ref="applicationConfiguration" />
+	</bean>
+	
+	<bean id="searchCasesOnline"
+		class="com.mobicule.mcollections.integration.collection.SearchCaseOnline">
+	</bean>
+	
+	<!-- Added for Deposition Bank Mapping Sync -->
+	<bean id="depositionBankSyncService"
+		class="com.mobicule.mcollections.integration.sync.DepositionBankMappingSync">
+		<property name="applicationConfiguration" ref="applicationConfiguration" />
+	</bean>
+	
+	<bean id="realizationDateSyncService"
+		class="com.mobicule.mcollections.integration.sync.RealizationDateSyncService">		
+		<property name="realizationDateSyncCoreService" ref="realizationDateSyncCoreService" />
+	</bean>
+
+</beans>

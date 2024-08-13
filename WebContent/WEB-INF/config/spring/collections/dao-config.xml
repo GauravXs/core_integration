@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- Spring Dao Beans -->
+	<bean id="randomCollectionsDao"
+		class="com.mobicule.mcollections.core.dao.RandomCollectionsDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="collectionDao"
+		class="com.mobicule.mcollections.core.dao.CollectionDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+
+	<bean id="caseDao"
+		class="com.mobicule.mcollections.core.dao.CaseDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+
+	<bean id="chequeDao"
+		class="com.mobicule.mcollections.core.dao.ChequeDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="transactionDao"
+		class="com.mobicule.mcollections.core.dao.TransactionDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+	</bean>
+
+	<bean id="imageDao"
+		class="com.mobicule.mcollections.core.dao.ImageDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="randomCollectionsExternalDao"
+		class="com.mobicule.mcollections.core.dao.RandomCollectionExternalDaoImplementation">
+		<property name="dataSource">
+			<ref bean="ext_dataSource" />
+		</property>
+	</bean>
+
+	<bean id="leadDao"
+		class="com.mobicule.mcollections.core.dao.LeadDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<bean id="settlementDao"
+		class="com.mobicule.mcollections.core.dao.SettlementDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="collectionPaymentStatusDao"
+		class="com.mobicule.mcollections.core.dao.CollectionPaymentStatusDaoImplementation">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+</beans>

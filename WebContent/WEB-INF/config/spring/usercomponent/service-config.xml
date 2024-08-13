@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			">
+	<!-- Spring Service Beans -->
+
+    <!-- USER MODULE -->
+
+    <bean id="territoryService" class="com.mobicule.component.usermapping.service.TerritoryServiceImpl">
+        <property name="genericDataBeanDAO" ref="territoryDao" />
+        <property name="roleTerritoryMappingService" ref="roleTerritoryMappingService" />
+    </bean>
+
+    <bean id="roleTerritoryMappingService" class="com.mobicule.component.usermapping.service.RoleTerritoryMappingServiceImpl">
+        <property name="genericDataBeanDAO" ref="roleTerritoryMappingDao" />
+    </bean>
+
+    <bean id="authenticationService" class="com.mobicule.component.usermapping.service.AuthenticationServiceImpl">
+        <property name="genericDataBeanDAO" ref="authenticationDao" />
+        <property name="systemUserTerritoryMappingDao" ref="systemUserTerritoryMappingDao" />
+        <property name="territoryService" ref="territoryService" />
+        <property name="systemUserTerritoryMappingService" ref="systemUserTerritoryMappingService" />
+    </bean>
+
+    <bean id="roleService" class="com.mobicule.component.usermapping.service.RoleServiceImpl">
+        <property name="genericDataBeanDAO" ref="roleDao" />
+        <property name="authenticationDao" ref="authenticationDao" />
+    </bean>
+
+    <bean id="activityService" class="com.mobicule.component.usermapping.service.ActivityServiceImpl">
+        <property name="genericDataBeanDAO" ref="activityDao" />
+    </bean>
+
+    <bean id="profileService" class="com.mobicule.component.usermapping.service.ProfileServiceImpl">
+        <property name="genericDataBeanDAO" ref="profileDao" />
+    </bean>
+
+    <bean id="profileManager" class="com.mobicule.component.usermapping.service.ProfileManagerImpl">
+        <property name="genericDataBeanDAO" ref="activityProfileMappingDao" />
+    </bean>
+
+    <bean id="systemUserTerritoryMappingService" class="com.mobicule.component.usermapping.service.SystemUserTerritoryMappingServiceImpl">
+        <property name="genericDataBeanDAO" ref="systemUserTerritoryMappingDao" />
+    </bean>
+    
+    <bean id="systemUserRoleMappingService" class="com.mobicule.component.usermapping.service.SystemUserRoleMappingServiceImpl">
+        <property name="genericDataBeanDAO" ref="systemUserRoleMappingDao" />
+    </bean>
+</beans>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- UAT -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		
+		<!-- CSB UAT -->
+		<property name="url" value="jdbc:postgresql://10.16.151.7:5432/csb?currentSchema=csb_core&amp;sslmode=disable" />
+        <property name="username" value="db_csb" />
+        <property name="password" value="Support@123" />
+        
+        
+        <!-- CSB PROD -->
+		<!-- <property name="url" value="jdbc:postgresql://10.17.2.6:5432/csb?currentSchema=csb_core&amp;sslmode=disable" />
+        <property name="username" value="db_csb" />
+        <property name="password" value="db_csb@123" /> -->
+        
+        
+        
+        <!-- <property name="hibernate.default_schema" value="csb_core" /> -->
+        
+        
+        <!-- <property name="url" value="jdbc:postgresql://10.16.151.7:5432/lightfinance?currentSchema=mcollect_lmf&amp;sslmode=disable" /> -->
+        
+        
+		<!-- <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
+		<!-- AWS Start -->
+		<!-- <property name="url" value="jdbc:sqlserver://0.0.0.0:1433;databaseName=MCOLLECT_RBL_DEMO" />
+        <property name="username" value="sa"/>
+        <property name="password" value="M0b1cule!"/>  -->
+		<!-- AWS End -->
+		<!-- Local Start -->
+		<!-- <property name="url" value="jdbc:sqlserver://10.1.1.90;databaseName=MCOLLECT_RBL_DEMO_LOCAL"/>
+		<property name="username" value="sa"/>
+		<property name="password" value="M0b1cule!"/>  -->
+		<!-- Local End -->
+		<!-- postgres local -->
+		<!-- <property name="url" value="jdbc:postgresql://10.1.1.53:5432/MCOLLECT-BANK-LOCAL?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="M0b1cule!" /> 
+		 -->
+        <!-- postgres Bank UAT -->
+        <!-- <property name="url" value="jdbc:postgresql://10.16.126.6:5432/MCOLLECT-UAT-BANK-1?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" />  -->
+        
+        <!-- postgres Prime UAT -->
+       <!--  <property name="url" value="jdbc:postgresql://10.16.126.6:5432/MCOLLECT-UAT-PRIME-1?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" />  -->
+        
+       <!--  <property name="url" value="jdbc:postgresql://10.16.126.6:5432/MCOLLECT-UAT-PRIME-1?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" />  -->
+        
+        <!-- postgres AWS Bank-->
+      <!--   <property name="url" value="jdbc:postgresql://3.214.124.230:7433/MCOLLECT-UAT?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="M0b1cule!" /> -->
+        
+        
+        <!-- NTT  AWS Config-->
+        <!--  <property name="url" value="jdbc:postgresql:// 10.16.164.3:5432/MCOLLECT-UAT?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" /> -->
+        
+         <!-- postgres AWS Prime-->
+        <!-- <property name="url" value="jdbc:postgresql://0.0.0.0:7433/MCOLLECT-AWS-PRIME-1?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="M0b1cule!" /> -->
+        
+         <!-- postgres Production bank-->
+        <!-- <property name="url" value="jdbc:postgresql://10.16.143.8:5432/mcollect-Bank-Prod-DB?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" /> -->
+        
+        <!-- postgres Production prime-->
+        <!-- <property name="url" value="jdbc:postgresql://10.16.144.8:5432/mcollect-Prime-Prod-DB?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" /> -->
+        
+         <!-- postgres Production bank-->
+        <!-- <property name="url" value="jdbc:postgresql://10.16.143.8:5432/mcollect-Bank-Prod-DB?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="Admin@1234" /> -->
+        
+        <!--  <property name="url" value="jdbc:postgresql://10.1.1.53:5432/MCOLLECT-BANK-LOCAL?sslmode=disable" />
+        <property name="username" value="postgres" />
+        <property name="password" value="M0b1cule!" /> -->
+	</bean>
+		
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="ext_dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://10.10.19.69:1433;databaseName=VP" />
+		<property name="username" value="creditcards1" />
+		<property name="password" value="Mobicule@123" />
+	</bean>
+	
+	<!-- from middleware to core  -->
+	<!-- <bean id = "ora_dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+			<property name="url" value="jdbc:oracle:thin:@10.10.56.174:1521:IDB"></property>
+			<property name="username" value="IFC"></property>
+			<property name="password" value="ifc123"></property>
+	</bean> -->
+	<bean id = "ora_coll_dataSource_bank" class="com.mobicule.mcollections.core.commons.MobiculeDriverManagerDataSource">
+	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+	<!-- Local Start -->
+		<!-- <property name="url"
+			value="jdbc:sqlserver://192.168.1.73:1433;databaseName=RBL" />
+		<property name="username"
+			value="EOssD8xQ0FuCxV5aIwOnpl0Kf0BfXOjPgF3Ab13FfWiDvVo=" />
+		<property name="password"
+			value="EDU6VAWf65Uu1MA10h8KiHMLf9iKoYJtqrIiklJmj3NAQgQ=" /> -->
+		<!-- Local End -->
+
+		<!-- UAT Start -->
+	<!-- 	<property name="url"
+			value="jdbc:sqlserver://collectionsuat.ck6axwrj3arr.ap-south-1.rds.amazonaws.com:1433;databaseName=RBL_Collection" />
+		<property name="username" value="ENkTp1mGoRw882r2f1GmgrALfxJrRbXGwMrMW0XeA/5Eqqk=" />
+		<property name="password" value="EKdKJ/3KRmewqiOGgnOCRQsLf6ytUHtHLDY0U1626XgOizg=" /> -->
+		<!-- UAT End -->
+
+		<!-- Prod Start -->
+		<!-- RBL Database team need to add username and password in values-->
+		<property name="url"
+			value="jdbc:sqlserver://collection-prod.ckf6nqv9q7q5.ap-south-1.rds.amazonaws.com:21445;databaseName=RBL_Collection" />
+		<property name="username" value="EF4HSI2qiw/LWWhX7jxiCZEKf4gMdWp76TaLKDrx/znxbAs=" />
+		<property name="password" value="EIVvLVzQTrG9unmFmoKULUsLf5UPVJXA0SsbIsZEx0XC3tc=" />
+		<!-- Prod End -->	
+	</bean>
+	
+	<bean id = "ora_coll_dataSource_prime" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+			<property name="url" value="jdbc:oracle:thin:@160.1.10.232:1528:col11"></property>
+			<property name="username" value="ic4prime"></property>
+			<property name="password" value="ic4prime#123"></property>
+	</bean>
+	
+	<bean id="ora_coll_dataSource_bank_CIFC"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@10.10.56.174:1530:IDB" />
+		<property name="username" value="cifc" />
+		<property name="password" value="cifc123" />
+</bean>
+	<!--for pdd -->
+	<bean id = "oracleDataSourceLms" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+			<property name="url" value="jdbc:oracle:thin:@192.168.1.199:1521:xe"></property>
+			<property name="username" value="Mobicule_lms_view_oracle"></property>
+			<property name="password" value="go4IT"></property>
+	</bean>
+	
+	<!--for pdd -->
+	<bean id="dataSourceLms"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="oracleDataSourceLms" />
+	</bean>
+
+	<bean id="ext_transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ext_dataSource" />
+	</bean>
+	<bean id="jdbcTemplateCIFC" 
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ora_coll_dataSource_bank_CIFC"></property>
+</bean>
+
+<bean id="jdbcTemplateIC4" 
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ora_coll_dataSource_bank"></property>
+</bean>
+
+<bean id="dataSourceJmix"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://3.214.124.230:1433;databaseName=mcollect_settlement" />
+		<property name="username" value="sa" />
+		<property name="password" value="M0b1cule!" />
+</bean>
+
+<bean id="jdbcTemplateJmix"
+	class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="dataSourceJmix"></property>
+</bean>
+	
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>com/mobicule/component/usermapping/bean/Activity.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/Profile.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/Role.hbm.xml</value>
+				<value>com/mobicule/component/usermapping/bean/SystemUserTerritoryMapping.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/SystemUserRoleMapping.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/Territory.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/Authentication.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/ActivityProfileMapping.hbm.xml
+				</value>
+				<value>com/mobicule/component/usermapping/bean/RoleTerritoryMapping.hbm.xml
+				</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
